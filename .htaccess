@@ -1,0 +1,19 @@
+# Otimização de Segurança para a Raiz do Projeto
+
+# 1. Impedir listagem de diretórios
+Options -Indexes
+
+# 2. Negar acesso direto a pastas críticas
+# Qualquer tentativa de acessar /app/ ou /core/ deve falhar.
+RewriteEngine On
+RewriteRule ^(app|core|config\.php|content|users)/ - [F,L]
+
+# Explicação da regra:
+# ^(app|core|config\.php|content|users)/ - Se a URI começar com 'app/', 'core/', etc.
+# - [F,L] - F (Forbidden - Proibido 403) e L (Last Rule - Última Regra).
+
+# 3. Redirecionamento (Opcional, mas útil)
+# Se alguém tentar acessar o diretório raiz, redirecione para o ponto de entrada /public/
+# A menos que seja a própria pasta public
+RewriteCond %{REQUEST_URI} !^/public/ [NC]
+RewriteRule ^$ public/ [L]
