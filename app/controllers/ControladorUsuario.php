@@ -4,9 +4,6 @@
  * * Gerencia a lógica de sessões e progresso do usuário (geralmente via API/AJAX).
  */
 
-// O usuário precisa estar logado para saber seu ID. Aqui usaremos a constante de exemplo.
-define('USUARIO_LOGADO_ID', '12345');
-
 class ControladorUsuario extends ControladorBase
 {
     private $modeloProgresso;

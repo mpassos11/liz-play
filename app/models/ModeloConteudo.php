@@ -27,12 +27,20 @@ class ModeloConteudo extends ModeloBase
     public function obterDetalhes(string $tipo, string $id): ?array
     {
 
-        $arquivo = match ($tipo) {
-            'filme' => 'filmes.json',
-            'serie' => 'series.json',
-            'tv' => 'tv.json',
-            default => null,
-        };
+        switch ($tipo) {
+            case 'filme':
+                $arquivo = 'filmes.json';
+                break;
+            case 'serie':
+                $arquivo = 'series.json';
+                break;
+            case 'tv':
+                $arquivo = 'tv.json';
+                break;
+            default:
+                $arquivo = null;
+                break;
+        }
 
         if (!$arquivo) {
             return null; // Tipo inválido

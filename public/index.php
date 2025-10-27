@@ -6,6 +6,8 @@ define('APP_ROOT', dirname(__DIR__));
 require_once APP_ROOT . '/core/Autocarga.php';
 require_once APP_ROOT . '/core/FuncoesGerais.php';
 
+const USUARIO_LOGADO_ID = '12345';
+
 // --- NOVO TRATAMENTO DE URI E CAMINHO BASE ---
 
 // Pega a URI completa solicitada pelo cliente
