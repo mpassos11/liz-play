@@ -2,7 +2,7 @@
 
 class Roteador
 {
-    private Array $rotas = [];
+    private array $rotas = [];
 
     // Adiciona uma rota ao mapa
     public function adicionarRota(string $uri, string $controlador, string $acao, string $metodo = 'GET'): void
@@ -17,10 +17,9 @@ class Roteador
     }
 
     // Processa a URI e executa a ação correspondente
-    public function despachar(string $uri): void
+    public function despachar(string $uri_limpa): void
     {
         $metodo = $_SERVER['REQUEST_METHOD'];
-        $uri_limpa = strtok($uri, '?'); // Remove query string
 
         if (!isset($this->rotas[$metodo])) {
             // Lidar com método não permitido (405)
@@ -39,7 +38,7 @@ class Roteador
                 $nomeAcao = $destino['acao'];
 
                 // Verificar e instanciar o controlador
-                $caminhoControlador = APP_ROOT . '/app/Controllers/' . $nomeControlador . '.php';
+                $caminhoControlador = APP_ROOT . '/app/controllers/' . $nomeControlador . '.php';
 
                 if (file_exists($caminhoControlador)) {
                     require_once $caminhoControlador;
