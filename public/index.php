@@ -5,6 +5,9 @@ define('APP_ROOT', dirname(__DIR__));
 // 1. Carregar Autocarga e Funções
 require_once APP_ROOT . '/core/Autocarga.php';
 require_once APP_ROOT . '/core/FuncoesGerais.php';
+require_once APP_ROOT . '/core/FuncoesConfig.php';
+
+carregarEnv(APP_ROOT . '/.env');
 
 const USUARIO_LOGADO_ID = '12345';
 

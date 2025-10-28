@@ -7,14 +7,26 @@
 class ModeloConteudo extends ModeloBase
 {
 
-    /**
-     * Obtém todo o conteúdo de um tipo específico (Filmes, Séries ou TV).
-     * @param string $arquivoJson O nome do arquivo JSON a ser lido (ex: 'filmes.json').
-     * @return array Conteúdo do arquivo ou array vazio.
-     */
-    public function obterPorTipo(string $arquivoJson): array
+    private ModeloApiIptv $apiIptv;
+
+    public function __construct()
     {
-        return $this->carregarConteudoJson($arquivoJson);
+        parent::__construct();
+        $this->apiIptv = new ModeloApiIptv(); // Carregado via Autocarga
+    }
+
+    public function obterPorTipo(string $tipo): array
+    {
+        switch ($tipo) {
+            case 'filmes.json':
+                return $this->apiIptv->obterFilmes();
+            case 'series.json':
+                return $this->apiIptv->obterSeries();
+            case 'tv.json':
+                return $this->apiIptv->obterCanaisAoVivo();
+        }
+
+        return [];
     }
 
     /**
