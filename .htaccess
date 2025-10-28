@@ -1,19 +1,25 @@
-# Otimização de Segurança para a Raiz do Projeto
+<IfModule mod_rewrite.c>
+    RewriteEngine On
 
-# 1. Impedir listagem de diretórios
-Options -Indexes
+    # ----------------------------------------------------
+    # AJUSTE CRÍTICO PARA SUBDIRETÓRIOS (localhost)
+    # ----------------------------------------------------
+    # O Apache precisa saber que a raiz do seu projeto é /liz-play/
+    # Se você estivesse na raiz do domínio (como liz-play.com.br), seria apenas RewriteBase /
+    RewriteBase /liz-play/
 
-# 2. Negar acesso direto a pastas críticas
-# Qualquer tentativa de acessar /app/ ou /core/ deve falhar.
-RewriteEngine On
-RewriteRule ^(app|core|config\.php|content|users)/ - [F,L]
+    # 1. Proteção e Otimização
+    Options -Indexes
+    # Bloqueio de acesso direto a pastas críticas (mantido)
+    RewriteRule ^(app|core|config\.php|content|users)/ - [F,L]
 
-# Explicação da regra:
-# ^(app|core|config\.php|content|users)/ - Se a URI começar com 'app/', 'core/', etc.
-# - [F,L] - F (Forbidden - Proibido 403) e L (Last Rule - Última Regra).
+    # 2. Impedir loops e acesso a arquivos/diretórios reais
+    # Se for um arquivo/diretório real dentro da raiz (ex: .htaccess, robots.txt), para
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
 
-# 3. Redirecionamento (Opcional, mas útil)
-# Se alguém tentar acessar o diretório raiz, redirecione para o ponto de entrada /public/
-# A menos que seja a própria pasta public
-RewriteCond %{REQUEST_URI} !^/public/ [NC]
-RewriteRule ^$ public/ [L]
+    # 3. Regra principal: Redireciona TUDO para o public/index.php
+    # [QSA] mantém a query string, [L] é a última regra
+    RewriteRule ^(.*)$ public/index.php?url=$1 [L,QSA]
+</IfModule>

@@ -20,7 +20,7 @@ $caminhoScript = $_SERVER['SCRIPT_NAME'];
 
 // Calcula o caminho base que deve ser removido
 // Exemplo: /liz-play/public/
-$caminhoBase = str_replace(basename($caminhoScript), '', $caminhoScript);
+$caminhoBase = $_ENV['URL_BASE'];
 
 // Remove o caminho base da URI e normaliza, garantindo que a raiz seja sempre '/'
 // $uriCompleta: /liz-play/public/assistir/filme/123?q=teste
@@ -32,7 +32,7 @@ $uriTratada = substr($uriCompleta, strlen($caminhoBase));
 $uriLimpa = strtok($uriTratada, '?');
 
 // Garante que a URI limpa sempre comece com uma barra, ou seja apenas '/' se estiver na raiz.
-$uriFinal = ($uriLimpa === false || $uriLimpa === '') ? '/' : '/' . ltrim($uriLimpa, '/');
+$uriFinal = "/{$_GET['url']}" ?: '';
 
 // --- FIM DO NOVO TRATAMENTO ---
 
@@ -41,14 +41,13 @@ $roteador = new Roteador();
 
 // 3. Definir Rotas (mantidas como estão, esperando a URI limpa)
 // Rota Principal: /
-$roteador->adicionarRota('/', 'Home', 'index');
+$roteador->adicionarRota('/home', 'Home', 'index');
 // Rota de Categoria: /filmes, /series, /tv
 $roteador->adicionarRota('/(\w+)', 'Home', 'categoria');
 // Rota de Visualização: /assistir/{tipo}/{id}
 $roteador->adicionarRota('/assistir/(\w+)/([\w\d]+)', 'Conteudo', 'assistir');
 // Rota AJAX para salvar o progresso: /api/salvar-progresso
 $roteador->adicionarRota('/api/salvar-progresso', 'Usuario', 'salvarProgresso', 'POST');
-
 
 // 4. Despachar a Requisição
 // Passamos a URI limpa e tratada para o roteador.
