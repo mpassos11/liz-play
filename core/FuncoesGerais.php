@@ -47,21 +47,8 @@ function carregarDadosJson(string $caminhoArquivo): ?array {
  * @return bool True se a escrita for bem-sucedida, False caso contrário.
  */
 function salvarDadosJson(string $caminhoArquivo, array $dados): bool {
-
-    $caminhoCompleto = (substr($caminhoArquivo, 0, 1) === '/') ? $caminhoArquivo : APP_ROOT . '/' . $caminhoArquivo;
-
-    // 1. Garante que o diretório exista
-    $diretorio = dirname($caminhoCompleto);
-    if (!is_dir($diretorio)) {
-        // Cria o diretório recursivamente
-        if (!mkdir($diretorio, 0777, true)) {
-            // Falha ao criar o diretório
-            return false;
-        }
-    }
-
     // 2. Codifica os dados em JSON (JSON_PRETTY_PRINT para legibilidade durante o desenvolvimento)
-    $json = json_encode($dados, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    $json = json_encode($dados, JSON_UNESCAPED_UNICODE);
 
     if ($json === false) {
         // Log ou tratamento de erro: Falha na codificação JSON
@@ -71,7 +58,7 @@ function salvarDadosJson(string $caminhoArquivo, array $dados): bool {
     // 3. Escreve o conteúdo no arquivo de forma segura (LOCK_EX)
     // O LOCK_EX evita que múltiplos processos escrevam no arquivo simultaneamente,
     // prevenindo corrupção do JSON, o que é crucial para o progresso do usuário.
-    return file_put_contents($caminhoCompleto, $json, LOCK_EX) !== false;
+    return file_put_contents($caminhoArquivo, $json, LOCK_EX) !== false;
 }
 
 // -------------------------------------------------------------------------

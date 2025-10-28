@@ -25,7 +25,7 @@ $tituloDisplay = $tituloPagina ?? 'Catálogo';
                 <div class="col">
                     <div class="card bg-dark text-white h-100 shadow-sm border-0">
 
-                        <img src="https://via.placeholder.com/300x450/333333/FFFFFF?text=<?= urlencode($item['title'] ?? $item['id']) ?>"
+                        <img src="<?= $item['stream_icon'] ?>"
                              class="card-img-top"
                              alt="<?= htmlspecialchars($item['title'] ?? 'Sem Título') ?>"
                              style="object-fit: cover; height: 250px;">

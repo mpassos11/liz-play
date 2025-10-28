@@ -33,7 +33,7 @@ class ControladorHome extends ControladorBase
         $progresso = $this->modeloProgresso->obterProgresso(self::USUARIO_ID_EXEMPLO);
 
         $dados = [
-            'tituloPagina' => 'Home - Seu IPTV',
+            'tituloPagina' => 'Home - Liz Play',
             'filmes' => $filmes,
             'series' => $series,
             'tv' => $tv,
