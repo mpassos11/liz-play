@@ -23,13 +23,15 @@ class ControladorBase
         // Converte as chaves do array de dados em variáveis para uso na View
         extract($dados);
 
+        $naoEhLogin = stripos($nomeView, 'login') === false;
+
         // Define os caminhos das partes da View
         $caminhoCabecalho = $this->diretorioBaseViews . 'layout/cabecalho.php';
         $caminhoView = $this->diretorioBaseViews . $nomeView . '.php';
         $caminhoRodape = $this->diretorioBaseViews . 'layout/rodape.php';
 
         // 1. Incluir Cabeçalho
-        if (file_exists($caminhoCabecalho)) {
+        if (file_exists($caminhoCabecalho) && $naoEhLogin) {
             require $caminhoCabecalho;
         }
 
@@ -44,7 +46,7 @@ class ControladorBase
         }
 
         // 3. Incluir Rodapé
-        if (file_exists($caminhoRodape)) {
+        if (file_exists($caminhoRodape) && $naoEhLogin) {
             require $caminhoRodape;
         }
     }

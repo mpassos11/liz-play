@@ -6,7 +6,7 @@
     # ----------------------------------------------------
     # O Apache precisa saber que a raiz do seu projeto é /liz-play/
     # Se você estivesse na raiz do domínio (como liz-play.com.br), seria apenas RewriteBase /
-    RewriteBase /liz-play/
+    # RewriteBase /liz-play/
 
     # 1. Proteção e Otimização
     Options -Indexes
@@ -21,5 +21,5 @@
 
     # 3. Regra principal: Redireciona TUDO para o public/index.php
     # [QSA] mantém a query string, [L] é a última regra
-    RewriteRule ^(.*)$ public/index.php?url=$1 [L,QSA]
+    RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
 </IfModule>

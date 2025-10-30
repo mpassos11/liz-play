@@ -9,7 +9,8 @@
  * @param string $caminhoArquivo O caminho absoluto ou relativo (com base em APP_ROOT) para o arquivo JSON.
  * @return array|null Dados decodificados como array associativo, ou null em caso de falha.
  */
-function carregarDadosJson(string $caminhoArquivo): ?array {
+function carregarDadosJson(string $caminhoArquivo): ?array
+{
 
     // Se o caminho não for absoluto, assume que é relativo a APP_ROOT
     $caminhoCompleto = (substr($caminhoArquivo, 0, 1) === '/') ? $caminhoArquivo : APP_ROOT . '/' . $caminhoArquivo;
@@ -46,7 +47,8 @@ function carregarDadosJson(string $caminhoArquivo): ?array {
  * @param array $dados Os dados a serem salvos.
  * @return bool True se a escrita for bem-sucedida, False caso contrário.
  */
-function salvarDadosJson(string $caminhoArquivo, array $dados): bool {
+function salvarDadosJson(string $caminhoArquivo, array $dados): bool
+{
     // 2. Codifica os dados em JSON (JSON_PRETTY_PRINT para legibilidade durante o desenvolvimento)
     $json = json_encode($dados, JSON_UNESCAPED_UNICODE);
 
@@ -70,7 +72,8 @@ function salvarDadosJson(string $caminhoArquivo, array $dados): bool {
  * @param string $nomeView Nome do arquivo da View (ex: 'home/index').
  * @param array $dados Dados a serem injetados na View.
  */
-function renderizarView(string $nomeView, array $dados = []): void {
+function renderizarView(string $nomeView, array $dados = []): void
+{
 
     // Converte as chaves do array de dados em variáveis (ex: $dados['filmes'] vira $filmes)
     // Isso torna o acesso aos dados mais limpo na View.
@@ -87,4 +90,10 @@ function renderizarView(string $nomeView, array $dados = []): void {
         echo "Erro: View '{$nomeView}' não encontrada.";
     }
 }
+
+function baseUrl(string $path = ''): string
+{
+    return getenv('URL_BASE') . $path;
+}
+
 ?>

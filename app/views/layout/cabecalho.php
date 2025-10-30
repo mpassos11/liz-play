@@ -42,17 +42,17 @@ $titulo = $tituloPagina ?? 'Seu Sistema IPTV';
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= htmlspecialchars($caminhoBase) ?>filmes">Filmes</a>
+                    <a class="nav-link" href="<?= baseUrl('/filmes') ?>">Filmes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= htmlspecialchars($caminhoBase) ?>series">Séries</a>
+                    <a class="nav-link" href="<?= baseUrl('/series') ?>">Séries</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= htmlspecialchars($caminhoBase) ?>tv">TV Ao Vivo</a>
+                    <a class="nav-link" href="<?= baseUrl('/tv') ?>">TV Ao Vivo</a>
                 </li>
             </ul>
             <span class="navbar-text text-light">
-                Olá, Usuário <?= USUARIO_LOGADO_ID ?? 'Visitante' ?>
+                Olá, <?= $_SESSION['username'] ?> | <a href="<?= baseUrl('/sair') ?>">Sair</a>
             </span>
         </div>
     </div>

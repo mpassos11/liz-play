@@ -39,7 +39,7 @@
                                     </div>
                                     <small class="text-muted">Assistido: <?= round($porcentagem) ?>%</small>
 
-                                    <a href="<?= htmlspecialchars($caminhoBase) ?>assistir/<?= htmlspecialchars($item['content_type']) ?>/<?= htmlspecialchars($item['content_id']) ?>"
+                                    <a href="<?= baseUrl("/assistir/{$item['content_type']}/{$item['content_id']}") ?>"
                                        class="btn btn-sm btn-outline-info mt-2 w-100">
                                         Continuar
                                     </a>
@@ -53,7 +53,7 @@
     <?php endif; ?>
 
     <section class="mb-5">
-        <h2 class="text-primary border-bottom border-primary pb-2"><a href="<?= htmlspecialchars($caminhoBase) ?>filmes"
+        <h2 class="text-primary border-bottom border-primary pb-2"><a href="<?= baseUrl('/filmes') ?>"
                                                                       class="text-decoration-none text-primary">Filmes</a>
         </h2>
         <div class="row row-cols-1 row-cols-md-5 g-3">
@@ -68,7 +68,7 @@
                              class="card-img-top" alt="<?= htmlspecialchars($filme['title']) ?>">
                         <div class="card-body p-2">
                             <h6 class="card-title text-truncate"><?= htmlspecialchars($filme['title']) ?></h6>
-                            <a href="<?= htmlspecialchars($caminhoBase) ?>assistir/filme/<?= htmlspecialchars($filme['id']) ?>"
+                            <a href="<?= baseUrl("/assistir/filme/{$filme['id']}") ?>"
                                class="btn btn-sm btn-danger w-100 mt-2">Assistir</a>
                         </div>
                     </div>
