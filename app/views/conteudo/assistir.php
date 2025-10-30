@@ -23,10 +23,10 @@ $duracaoSimulada = 1800; // Simula 30 minutos em segundos para o exemplo
                        data-content-id="<?= $idConteudo ?>"
                        data-content-type="<?= $tipoConteudo ?>"
                        data-content-duration="<?= $duracaoSimulada ?>"
-                       poster="https://via.placeholder.com/1280x720/000000/FFFFFF?text=PLAYER+LIZ+PLAY"
+                       poster="<?= $conteudo['stream_icon'] ?>"
                        style="width: 100%; height: 100%;">
 
-                    <source src="URL_DO_STREAMING_AQUI" type="video/mp4">
+                    <source src="<?= $conteudo['live_source'] ?>" type="video/mp4">
                     Seu navegador não suporta a tag de vídeo.
                 </video>
             </div>
@@ -39,26 +39,7 @@ $duracaoSimulada = 1800; // Simula 30 minutos em segundos para o exemplo
         </div>
     </div>
 </div>
-
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const player = document.getElementById('playerPrincipal');
-        const contentId = player.getAttribute('data-content-id');
-        const contentType = player.getAttribute('data-content-type');
-        const duracaoTotal = parseInt(player.getAttribute('data-content-duration'));
-        const tempoInicial = <?= (int)$tempoInicial ?>; // Injetado pelo Controller
-
-        // 1. Iniciar a reprodução no tempo salvo
-        if (player && tempoInicial > 0) {
-            player.currentTime = tempoInicial;
-            console.log(`Iniciando a reprodução a partir de ${tempoInicial} segundos.`);
-        }
-
-        // 2. Lógica de Rastreamento (usa a função definida em player_tracking.js)
-        if (typeof inicializarRastreamentoPlayer === 'function') {
-            inicializarRastreamentoPlayer(player, contentId, contentType, duracaoTotal, '<?= $caminhoBase ?>api/salvar-progresso');
-        } else {
-            console.error("Função 'inicializarRastreamentoPlayer' não encontrada. Verifique public/js/player_tracking.js.");
-        }
-    });
+    const tempoInicial = <?= (int)$tempoInicial ?>; // Injetado pelo Controller
+    const URL_BASE = "<?= $_ENV['URL_BASE'] ?>";
 </script>

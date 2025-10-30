@@ -10,7 +10,7 @@
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<script src="<?= htmlspecialchars($caminhoBase) ?>js/player_tracking.js"></script>
+<script src="<?= $_ENV['URL_BASE'] ?>/public/js/player_tracking.js"></script>
 
 </body>
 </html>

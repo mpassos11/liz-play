@@ -78,10 +78,26 @@ class ControladorHome extends ControladorBase
         // Carrega o conteúdo específico
         $conteudo = $this->modeloConteudo->obterPorTipo($arquivo);
 
+        // Define o número de canais por página
+        $limitePorPagina = 25;
+
+        // Pega o número da página da URL (padrão 1)
+        $paginaAtual = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
+        $offset = ($paginaAtual - 1) * $limitePorPagina;
+
+        // 2. Calcula o total de páginas
+        $totalConteudo = count($conteudo);
+        $totalPaginas = ceil($totalConteudo / $limitePorPagina);
+
+        // 3. Aplica a paginação (limita o array)
+        $conteudoAExebir = array_slice($conteudo, $offset, $limitePorPagina);
+
         $dados = [
             'tituloPagina' => ucwords($tipoConteudo),
-            'conteudo' => $conteudo,
-            'tipo' => $tipoConteudo
+            'conteudo' => $conteudoAExebir,
+            'tipo' => $tipoConteudo,
+            'paginaAtual' => $paginaAtual,
+            'totalPaginas' => $totalPaginas,
         ];
 
         // Renderiza uma view genérica de categoria ou a view home/index com a tab ativa

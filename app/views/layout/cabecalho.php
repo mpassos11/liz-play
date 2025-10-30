@@ -14,8 +14,6 @@ $titulo = $tituloPagina ?? 'Seu Sistema IPTV';
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
           crossorigin="anonymous">
 
-    <link rel="stylesheet" href="<?= htmlspecialchars($caminhoBase) ?>css/style.css">
-
     <style>
         /* Estilos básicos para o tema escuro de streaming */
         body {

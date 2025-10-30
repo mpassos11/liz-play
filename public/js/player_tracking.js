@@ -90,3 +90,42 @@ function inicializarRastreamentoPlayer(playerElement, contentId, contentType, du
     // 3. Salva o progresso quando o usuário fecha a página ou navega
     window.addEventListener('beforeunload', window.progressoSalvo);
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const player = document.getElementById('playerPrincipal');
+    const contentId = player.getAttribute('data-content-id');
+    const contentType = player.getAttribute('data-content-type');
+    const duracaoTotal = parseInt(player.getAttribute('data-content-duration'));
+
+    // 1. Iniciar a reprodução no tempo salvo
+    if (player && tempoInicial > 0) {
+        player.currentTime = tempoInicial;
+        console.log(`Iniciando a reprodução a partir de ${tempoInicial} segundos.`);
+    }
+
+    // 2. Lógica de Rastreamento (usa a função definida em player_tracking.js)
+    if (typeof inicializarRastreamentoPlayer === 'function') {
+        inicializarRastreamentoPlayer(player, contentId, contentType, duracaoTotal, URL_BASE + '/api/salvar-progresso');
+    } else {
+        console.error("Função 'inicializarRastreamentoPlayer' não encontrada. Verifique public/js/player_tracking.js.");
+    }
+
+    var lazyImages = [].slice.call(document.querySelectorAll("img.canal-logo"));
+
+    if ("IntersectionObserver" in window) {
+        let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    let lazyImage = entry.target;
+                    lazyImage.src = lazyImage.dataset.src;
+                    lazyImage.classList.remove("canal-logo");
+                    lazyImageObserver.unobserve(lazyImage);
+                }
+            });
+        });
+
+        lazyImages.forEach(function(lazyImage) {
+            lazyImageObserver.observe(lazyImage);
+        });
+    }
+});
