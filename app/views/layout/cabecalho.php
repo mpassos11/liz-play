@@ -52,7 +52,11 @@ $titulo = $tituloPagina ?? 'Seu Sistema IPTV';
                 </li>
             </ul>
             <span class="navbar-text text-light">
-                Olá, <?= $_SESSION['username'] ?> | <a href="<?= baseUrl('/sair') ?>">Sair</a>
+                Olá, <?= $_SESSION['username'] ?> |
+                <?php if (class_exists('ModeloAuth') && ModeloAuth::estaAutenticado()): ?>
+                    <a href="<?= baseUrl('/config') ?>">Configurações</a>
+                    <a href="<?= baseUrl('/sair') ?>">Sair</a>
+                <?php endif; ?>
             </span>
         </div>
     </div>
