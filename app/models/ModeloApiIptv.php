@@ -1,165 +1,174 @@
 <?php
 /**
  * MODELOAPIIPTV.PHP
- * * Adaptado para consumir listas M3U do IPTV-ORG.
- * * NOTA: O IPTV-ORG foca em TV AO VIVO. Filmes (VOD) e Séries não serão implementados.
+ * Classe para interagir com uma API de IPTV no padrão Xtream Codes,
+ * buscando Canais (Live), Filmes (VOD) e Séries.
  */
 
 class ModeloApiIptv
 {
-
-    private $m3uUrl;
+    private $apiUrlBase;
+    private $username;
+    private $password;
 
     public function __construct()
     {
-        // Pega a URL do M3U
-        $this->m3uUrl = getenv('IPTV_API_URL');
+        // Obtém as configurações do .env (devem ser a URL base, usuário e senha)
+        $this->apiUrlBase = getenv('IPTV_API_URL');
+        $this->username = getenv('IPTV_USERNAME');
+        $this->password = getenv('IPTV_PASSWORD');
 
-        if (!$this->m3uUrl) {
-            error_log("ERRO FATAL: URL IPTV_API_URL não configurada no .env");
+        if (!$this->apiUrlBase || !$this->username || !$this->password) {
+            error_log("ERRO FATAL: Credenciais Xtream Codes (URL, User, Pass) não configuradas no .env");
+            // Em ambiente de produção, seria bom lançar uma exceção ou retornar false
         }
-
-        // As credenciais de login e senha são ignoradas para listas M3U públicas
     }
 
     /**
-     * Faz a requisição HTTP (cURL) para obter o conteúdo RAW do M3U.
-     * @param string $url A URL completa do M3U.
-     * @return string O conteúdo do arquivo M3U ou string vazia em caso de erro.
+     * Faz uma requisição HTTP para a API e retorna o resultado em JSON.
+     * @param string $action A ação específica da API (ex: get_live_streams).
+     * @param array $params Parâmetros adicionais para a requisição.
+     * @return array|null O array decodificado do JSON ou null em caso de falha.
      */
-    private function fazerRequisicaoM3U(string $url): string
+    private function fazerRequisicaoAPI(string $action, array $params = []): ?array
     {
+        // 1. Constrói a URL base com autenticação e ação
+        $url = $this->apiUrlBase . '/player_api.php';
+        $query = [
+            'username' => $this->username,
+            'password' => $this->password,
+            'action' => $action
+        ];
+
+        // 2. Adiciona parâmetros específicos da ação (como category_id, etc.)
+        $query = array_merge($query, $params);
+        $urlCompleta = $url . '?' . http_build_query($query);
+
         $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_URL, $urlCompleta);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_USERAGENT, 'LizPlay-App-Client');
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Necessário se o servidor usar SSL autoassinado
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30); // Timeout de 30 segundos
 
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         if (curl_errno($ch)) {
-            error_log("Erro cURL ao buscar M3U: " . curl_error($ch));
+            error_log("Erro cURL ao buscar API: " . curl_error($ch));
             curl_close($ch);
-            return '';
+            return null;
         }
 
         curl_close($ch);
 
         if ($httpCode !== 200) {
-            error_log("Erro HTTP {$httpCode} ao buscar M3U.");
-            return '';
+            error_log("Erro HTTP {$httpCode} ao buscar API. URL: " . $urlCompleta);
+            return null;
         }
 
-        return (string)$response;
-    }
+        $json = json_decode($response, true);
 
-    /**
-     * Analisa (parseia) o conteúdo M3U e o converte para um array JSON estruturado.
-     * @param string $m3uContent Conteúdo de texto do arquivo M3U.
-     * @return array Array de canais formatado.
-     */
-    private function parseM3U(string $m3uContent): array
-    {
-        $linhas = explode("\n", $m3uContent);
-        $canais = [];
-        $item = [];
-
-        foreach ($linhas as $linha) {
-            $linha = trim($linha);
-
-            if (strpos($linha, '#EXTINF:') === 0) {
-                // Linha de informações do canal (#EXTINF)
-
-                // 1. Extrai o nome do canal (após a última vírgula)
-                $nomeCanal = trim(substr($linha, strrpos($linha, ',') + 1));
-
-                // 2. Extrai tags (tvg-id, tvg-logo, group-title)
-                $tags = [];
-                if (preg_match_all('/([a-z0-9-]+)="([^"]*)"/', $linha, $matches, PREG_SET_ORDER)) {
-                    foreach ($matches as $match) {
-                        $tags[$match[1]] = $match[2];
-                    }
-                }
-
-                // Prepara o array do item para a próxima URL
-                $item = [
-                    'id' => $tags['tvg-id'] ?? uniqid(), // Usa tvg-id como ID ou gera um único
-                    'stream_id' => $tags['tvg-id'] ?? uniqid(), // Compatibilidade com Xtream Codes
-                    'title' => $nomeCanal,
-                    'name' => $nomeCanal,
-                    'stream_icon' => $tags['tvg-logo'] ?? '',
-                    'category_name' => $tags['group-title'] ?? 'Sem Categoria',
-                    'stream_type' => 'live', // Tipo fixo para IPTV-ORG
-                    'live_source' => '', // URL será adicionada na próxima linha
-                ];
-
-            } elseif (!empty($linha) && strpos($linha, 'http') === 0) {
-                // Linha da URL do Stream (que vem após a linha #EXTINF)
-
-                if (!empty($item)) {
-                    $item['live_source'] = $linha;
-                    $canais[] = $item;
-                    $item = []; // Zera o item para o próximo canal
-                }
-            }
+        if ($json === null) {
+            error_log("Falha ao decodificar JSON da API.");
+            return null;
         }
 
-        return $canais;
+        return $json;
     }
 
     // ---------------------------------------------------------------------
-    // MÉTODOS PÚBLICOS PARA ACESSAR OS CONTEÚDOS
+    // MÉTODOS PÚBLICOS PARA CONTEÚDO
     // ---------------------------------------------------------------------
 
     /**
-     * Obtém a lista de canais de TV ao vivo do M3U.
-     * Retorna um array no formato esperado pelo sistema.
-     * @return array
+     * Obtém a lista de canais de TV ao vivo.
+     * Endpoint: player_api.php?action=get_live_streams
+     * @return array Lista de canais.
      */
     public function obterCanaisAoVivo(): array
     {
-        $m3uContent = $this->fazerRequisicaoM3U($this->m3uUrl);
+        $response = $this->fazerRequisicaoAPI('get_live_streams');
 
-        if (empty($m3uContent)) {
+        if (empty($response)) {
             return [];
         }
 
-        return $this->parseM3U($m3uContent);
-    }
-
-    // ---------------------------------------------------------------------
-    // MÉTODOS PARA FILMES E SÉRIES: Não suportados pelo IPTV-ORG
-    // ---------------------------------------------------------------------
-
-    public function obterFilmes(): array
-    {
-        return [];
-    }
-
-    public function obterSeries(): array
-    {
-        return [];
+        return $this->tratarLinksReproducao($response);
     }
 
     /**
+     * Obtém a lista de Filmes (VOD).
+     * Endpoint: player_api.php?action=get_vod_streams
+     * @return array Lista de filmes.
+     */
+    public function obterFilmes(): array
+    {
+        $response = $this->fazerRequisicaoAPI('get_vod_streams');
+
+        if (empty($response)) {
+            return [];
+        }
+
+        return $this->tratarLinksReproducao($response);
+    }
+
+    /**
+     * Obtém a lista de Séries.
+     * Endpoint: player_api.php?action=get_series
+     * @return array Lista de séries.
+     */
+    public function obterSeries(): array
+    {
+        $response = $this->fazerRequisicaoAPI('get_series');
+
+        if (empty($response)) {
+            return [];
+        }
+
+        return $this->tratarLinksReproducao($response);
+    }
+
+    private function tratarLinksReproducao(array $itens): array
+    {
+        foreach ($itens as &$item) {
+            $item['title'] = $item['title'] ?? $item['name'];
+            $item['stream_link'] = $this->construirUrlReproducao($item['stream_id'], $item['stream_type']);
+        }
+
+        return $itens;
+    }
+
+    // ---------------------------------------------------------------------
+    // CONSTRUÇÃO DA URL DE REPRODUÇÃO
+    // ---------------------------------------------------------------------
+
+    /**
      * Constrói a URL direta de reprodução.
-     * Para M3U, a URL de reprodução já está no campo 'live_source' do item.
-     * Este método é simplificado para retornar a URL de teste (live_source).
+     * Padrão Xtream Codes: http://server:port/tipo/usuario/senha/stream_id.ts
+     * * @param string $idStream O ID do stream (stream_id, vod_id ou series_id).
+     * @param string $tipo O tipo de conteúdo ('live', 'vod' ou 'series').
+     * @param string $formato O formato de arquivo desejado (geralmente 'ts' ou 'm3u8').
+     * @return string A URL de reprodução completa e direta.
      */
     public function construirUrlReproducao(string $idStream, string $tipo = 'live', string $formato = 'ts'): string
     {
-        // Como o IPTV-ORG não usa a estrutura "live/user/pass/streamid.ts",
-        // esta função deve ser chamada de outra forma no ControladorAssistir.
+        // 1. Garante que a URL base termine sem barra
+        $baseUrl = rtrim($this->apiUrlBase, '/');
 
-        // Em um cenário real de M3U, você precisa buscar o item pelo $idStream
-        // e retornar o campo 'live_source' que foi salvo no cache.
+        // 2. Constrói a URL
+        $urlReproducao = sprintf(
+            '%s/%s/%s/%s/%s.%s',
+            $baseUrl,
+            $tipo, // live, vod, series
+            $this->username,
+            $this->password,
+            $idStream,
+            $formato
+        );
 
-        // Retornamos um placeholder para evitar erros se não for usado.
-        error_log("ATENÇÃO: A função construirUrlReproducao não é ideal para M3U. Use a URL salva em cache.");
-
-        return $this->m3uUrl; // Retorno de fallback.
+        return $urlReproducao;
     }
 }

@@ -41,7 +41,7 @@ $tituloDisplay = $tituloPagina ?? 'Catálogo';
                                     Ano: <?= htmlspecialchars($item['year']) ?></p>
                             <?php endif; ?>
 
-                            <a href="<?= baseUrl("/assistir/$tipo/{$item['id']}") ?>"
+                            <a href="<?= baseUrl("/assistir/$tipo/{$item['stream_id']}") ?>"
                                class="btn btn-sm btn-danger w-100 mt-2">
                                 Assistir Agora
                             </a>

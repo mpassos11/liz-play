@@ -5,7 +5,8 @@
  * * Implementa Cache local com TTL (Time To Live) de 24 horas.
  */
 
-class ModeloConteudo extends ModeloBase {
+class ModeloConteudo extends ModeloBase
+{
 
     private $apiIptv;
 
@@ -15,7 +16,8 @@ class ModeloConteudo extends ModeloBase {
     // Novo diretório para salvar o cache da API, fora de 'content/' que era estático
     private $diretorioCache = APP_ROOT . '/cache/';
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         // ModeloApiIptv será carregado via Autocarga
         $this->apiIptv = new ModeloApiIptv();
@@ -33,7 +35,8 @@ class ModeloConteudo extends ModeloBase {
      * @param string $nomeCache Nome do arquivo de cache (ex: 'filmes.json').
      * @return array Conteúdo do arquivo ou array vazio.
      */
-    public function obterPorTipo(string $nomeCache): array {
+    public function obterPorTipo(string $nomeCache): array
+    {
 
         $caminhoCache = $this->diretorioCache . $nomeCache;
         $conteudo = [];
@@ -91,15 +94,16 @@ class ModeloConteudo extends ModeloBase {
      * @param string $id ID único do item.
      * @return array|null Os detalhes do conteúdo ou null se não for encontrado.
      */
-    public function obterDetalhes(string $tipo, string $id): ?array {
+    public function obterDetalhes(string $tipo, string $id): ?array
+    {
 
         // Mapeia o tipo para o nome do arquivo de cache
         $arquivoCache = null;
         switch ($tipo) {
-            case 'filme':
+            case 'filmes':
                 $arquivoCache = 'filmes.json';
                 break;
-            case 'serie':
+            case 'series':
                 $arquivoCache = 'series.json';
                 break;
             case 'tv':

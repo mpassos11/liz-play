@@ -19,6 +19,8 @@ $roteador->adicionarRota('/api/salvar-progresso', 'Usuario', 'salvarProgresso', 
 $roteador->adicionarRota('/config', 'Config', 'index');
 $roteador->adicionarRota('/config/atualizar', 'Config', 'atualizar', 'POST');
 
+$roteador->adicionarRota('/proxy', 'Proxy', 'stream');
+
 // Rota de Categoria: /filmes, /series, /tv
 $roteador->adicionarRota('/(\w+)', 'Home', 'categoria');
 

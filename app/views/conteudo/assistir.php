@@ -7,10 +7,15 @@
  * $usuarioId (ID do usuário logado)
  */
 
-$idConteudo = htmlspecialchars($conteudo['id'] ?? 'N/A');
+$idConteudo = htmlspecialchars($conteudo['stream_id'] ?? 'N/A');
 $tipoConteudo = htmlspecialchars($conteudo['tipo_conteudo'] ?? 'filme');
 $titulo = htmlspecialchars($conteudo['title'] ?? 'Conteúdo Desconhecido');
-$duracaoSimulada = 1800; // Simula 30 minutos em segundos para o exemplo
+
+$link = $conteudo['stream_link'];
+if (stripos($link, 'http://') !== FALSE) {
+    //$link = base64_encode($link);
+    //$link = baseUrl("/proxy?url_proxy={$link}");
+}
 ?>
 
 <div class="container">
@@ -19,16 +24,8 @@ $duracaoSimulada = 1800; // Simula 30 minutos em segundos para o exemplo
     <div class="row">
         <div class="col-lg-12">
             <div class="ratio ratio-16x9 mb-4 bg-black">
-                <video id="playerPrincipal" controls autoplay
-                       data-content-id="<?= $idConteudo ?>"
-                       data-content-type="<?= $tipoConteudo ?>"
-                       data-content-duration="<?= $duracaoSimulada ?>"
-                       poster="<?= $conteudo['stream_icon'] ?>"
-                       style="width: 100%; height: 100%;">
-
-                    <source src="<?= $conteudo['live_source'] ?>" type="video/mp4">
-                    Seu navegador não suporta a tag de vídeo.
-                </video>
+                <!-- Este é o contêiner onde o Clappr será injetado -->
+                <video id="video" controls autoplay poster="<?= $conteudo['stream_icon'] ?? '' ?>" src="<?= $link ?>" preload="metadata"></video>
             </div>
 
             <p class="text-muted">Detalhes do Conteúdo: ID #<?= $idConteudo ?> | Tipo: <?= ucfirst($tipoConteudo) ?></p>
@@ -40,6 +37,6 @@ $duracaoSimulada = 1800; // Simula 30 minutos em segundos para o exemplo
     </div>
 </div>
 <script>
-    const tempoInicial = <?= (int)$tempoInicial ?>; // Injetado pelo Controller
     const URL_BASE = "<?= $_ENV['URL_BASE'] ?>";
+    const tipo = "<?= $tipoConteudo ?>";
 </script>

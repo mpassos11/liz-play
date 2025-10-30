@@ -9,8 +9,7 @@
         crossorigin="anonymous"></script>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-<script src="<?= $_ENV['URL_BASE'] ?>/public/js/player_tracking.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@clappr/player@latest/dist/clappr.plainhtml5.min.js"></script>
+<script type="text/javascript" src="/public/js/player.js"></script>
 </body>
 </html>

@@ -1,8 +1,3 @@
-/**
- * player_tracking.js
- * * Responsável por rastrear o tempo de reprodução e enviar o progresso para o servidor via AJAX.
- */
-
 // Intervalo de tempo (em segundos) entre cada salvamento do progresso
 const INTERVALO_SALVAMENTO = 15;
 let ultimoTempoSalvo = 0;
@@ -71,8 +66,13 @@ function enviarProgresso(tempoAtual, contentId, contentType, duracaoTotal, rotaA
  * Função principal para iniciar o rastreamento.
  */
 function inicializarRastreamentoPlayer(playerElement, contentId, contentType, duracaoTotal, rotaApi) {
-    if (!playerElement || !contentId || !duracaoTotal || !rotaApi) {
+    if (!playerElement || !contentId || !rotaApi) {
         console.error('Parâmetros de rastreamento incompletos.');
+        return;
+    }
+
+    if (contentType === 'tv') {
+        console.info('Conteudo não será rastreado');
         return;
     }
 
@@ -113,8 +113,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var lazyImages = [].slice.call(document.querySelectorAll("img.canal-logo"));
 
     if ("IntersectionObserver" in window) {
-        let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(function(entry) {
+        let lazyImageObserver = new IntersectionObserver(function (entries, observer) {
+            entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
                     let lazyImage = entry.target;
                     lazyImage.src = lazyImage.dataset.src;
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        lazyImages.forEach(function(lazyImage) {
+        lazyImages.forEach(function (lazyImage) {
             lazyImageObserver.observe(lazyImage);
         });
     }
