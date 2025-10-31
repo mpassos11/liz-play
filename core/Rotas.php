@@ -7,11 +7,12 @@ $roteador->adicionarRota('/login', 'Login', 'index');
 $roteador->adicionarRota('/logar', 'Login', 'logar', 'POST');
 $roteador->adicionarRota('/sair', 'Login', 'sair');
 
-// 3. Definir Rotas (mantidas como estão, esperando a URI limpa)
+// 3. Definir Rotas (mantidas como estï¿½o, esperando a URI limpa)
 // Rota Principal: /
 $roteador->adicionarRota('', 'Login', 'index');
 $roteador->adicionarRota('/home', 'Home', 'index');
-// Rota de Visualização: /assistir/{tipo}/{id}
+$roteador->adicionarRota('/trocar-perfil', 'Home', 'trocar_perfil');
+// Rota de Visualizaï¿½ï¿½o: /assistir/{tipo}/{id}
 $roteador->adicionarRota('/assistir/(\w+)/([\w\d]+)', 'Conteudo', 'assistir');
 // Rota AJAX para salvar o progresso: /api/salvar-progresso
 $roteador->adicionarRota('/api/salvar-progresso', 'Usuario', 'salvarProgresso', 'POST');
@@ -24,6 +25,6 @@ $roteador->adicionarRota('/proxy', 'Proxy', 'stream');
 // Rota de Categoria: /filmes, /series, /tv
 $roteador->adicionarRota('/(\w+)', 'Home', 'categoria');
 
-// 4. Despachar a Requisição
+// 4. Despachar a Requisiï¿½ï¿½o
 // Passamos a URI limpa e tratada para o roteador.
 $roteador->despachar($uriFinal);

@@ -9,14 +9,19 @@ class ControladorHome extends ControladorBase
     private $modeloConteudo;
     private $modeloProgresso;
 
-    // Simulação do ID do usuário logado (deve ser obtido de uma sessão real)
-    private const USUARIO_ID_EXEMPLO = '12345';
+    private array $perfis = [
+        1 => 'Matheus',
+        2 => 'Isa'
+    ];
 
     public function __construct()
     {
         // As classes ModeloConteudo e ModeloProgresso serão carregadas via Autocarga.php
         $this->modeloConteudo = new ModeloConteudo();
         $this->modeloProgresso = new ModeloProgresso();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
     }
 
     /**
@@ -25,12 +30,28 @@ class ControladorHome extends ControladorBase
      */
     public function index(): void
     {
+        // Se um perfil foi escolhido, armazena na sessão
+        if (isset($_GET['perfil'])) {
+            $_SESSION['perfil_id'] = $_GET['perfil'];
+            // Redireciona para a home para limpar a URL
+            header('Location: /');
+            exit;
+        }
+
+        // Se não há perfil na sessão, mostra a tela de escolha
+        if (!isset($_SESSION['perfil_id'])) {
+            renderizarView('home/perfis');
+            return;
+        }
+
+        $usuarioId = $_SESSION['perfil_id'];
+        $_SESSION['nome_usuario'] = $this->perfis[$usuarioId];
 
         // 1. Carregar Dados Essenciais
         //$filmes = $this->modeloConteudo->obterPorTipo('filmes.json');
         //$series = $this->modeloConteudo->obterPorTipo('series.json');
         //$tv = $this->modeloConteudo->obterPorTipo('tv.json');
-        $progresso = $this->modeloProgresso->obterProgresso(self::USUARIO_ID_EXEMPLO);
+        $progresso = $this->modeloProgresso->obterProgresso($usuarioId);
 
         $dados = [
             'tituloPagina' => 'Home - Liz Play',
@@ -44,6 +65,15 @@ class ControladorHome extends ControladorBase
         $this->renderizar('home/index', $dados);
     }
 
+    public function trocar_perfil(): void
+    {
+        $_SESSION['perfil_id'] = null;
+        // Redireciona para a home para limpar a URL
+        header('Location: /');
+        exit;
+    }
+
+
     /**
      * Rota: /(\w+) (ex: /filmes, /series)
      * Exibe uma categoria específica.
@@ -51,6 +81,10 @@ class ControladorHome extends ControladorBase
      */
     public function categoria(string $tipoConteudo): void
     {
+        if (!isset($_SESSION['perfil_id'])) {
+            header('Location: /');
+            exit;
+        }
 
         // Mapeia o nome amigável da rota para o nome do arquivo JSON
         switch ($tipoConteudo) {
