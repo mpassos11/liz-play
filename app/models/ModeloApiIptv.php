@@ -136,6 +136,7 @@ class ModeloApiIptv
         foreach ($itens as &$item) {
             $item['title'] = $item['title'] ?? $item['name'];
             $item['stream_id'] = $item['stream_id'] ?? $item['vod_id'] ?? $item['series_id'];
+            $item['stream_icon'] = $item['stream_icon'] ?? $item['cover'];
             $item['stream_link'] = $this->construirUrlReproducao($item['stream_id'], $item['stream_type']);
         }
 

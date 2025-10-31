@@ -4,6 +4,13 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 header('Content-type: text/html; charset=utf-8');
 
+// FORCAR APENAS HTTP
+if ($_SERVER['REQUEST_SCHEME'] === 'https') {
+    $redirectUrl = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    header('Location: ' . $redirectUrl);
+    exit;
+}
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -36,6 +43,6 @@ require_once APP_ROOT . '/core/Rotas.php';
 // se o usuário NÃO está autenticado
 if (!ModeloAuth::estaAutenticado() && !in_array($uriFinal, ['/login', '/logar', '/sair'])) {
     // Se a rota não é pública e não está logado, redireciona para o login
-    header("Location: $caminhoBase/login");
+    echo "<script>window.location.href = $caminhoBase/login</script>";
     exit;
 }

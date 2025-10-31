@@ -27,16 +27,16 @@ class ControladorHome extends ControladorBase
     {
 
         // 1. Carregar Dados Essenciais
-        $filmes = $this->modeloConteudo->obterPorTipo('filmes.json');
-        $series = $this->modeloConteudo->obterPorTipo('series.json');
-        $tv = $this->modeloConteudo->obterPorTipo('tv.json');
+        //$filmes = $this->modeloConteudo->obterPorTipo('filmes.json');
+        //$series = $this->modeloConteudo->obterPorTipo('series.json');
+        //$tv = $this->modeloConteudo->obterPorTipo('tv.json');
         $progresso = $this->modeloProgresso->obterProgresso(self::USUARIO_ID_EXEMPLO);
 
         $dados = [
             'tituloPagina' => 'Home - Liz Play',
-            'filmes' => $filmes,
-            'series' => $series,
-            'tv' => $tv,
+            'filmes' => [],
+            'series' => [],
+            'tv' => [],
             'progressoUsuario' => $progresso['progressos'] ?? []
         ];
 
