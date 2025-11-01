@@ -60,16 +60,6 @@ class ControladorProxy extends ControladorBase
         $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
         $error = curl_error($ch);
 
-        error_log(print_r([
-            $conteudo,
-            curl_getinfo($ch),
-            $error,
-            $urlInsegura,
-            $_GET,
-            $_REQUEST,
-            $_SERVER
-        ], true));
-
         curl_close($ch);
 
         if ($httpCode !== 200) {
