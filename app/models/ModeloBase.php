@@ -11,7 +11,7 @@ class ModeloBase
     /**
      * @var string Diretório base onde os arquivos de conteúdo JSON estão localizados.
      */
-    protected $diretorioConteudo = APP_ROOT . '/content/';
+    protected $diretorioConteudo = APP_ROOT . '/cache/';
 
     /**
      * @var string Diretório base onde os arquivos de progresso do usuário JSON estão localizados.
@@ -20,8 +20,13 @@ class ModeloBase
 
     public function __construct()
     {
-        // Garantir que as funções globais (FuncoesGerais.php) estejam disponíveis
-        // Embora FuncoesGerais.php seja incluído em index.php, é bom manter a clareza.
+        if (!is_dir($this->diretorioConteudo)) {
+            mkdir($this->diretorioConteudo, 0755);
+        }
+
+        if (!is_dir($this->diretorioUsuarios)) {
+            mkdir($this->diretorioUsuarios, 0755);
+        }
     }
 
     /**

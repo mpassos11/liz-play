@@ -30,9 +30,9 @@ class ControladorUsuario extends ControladorBase
         }
 
         // Recebe e decodifica o corpo da requisição JSON (do player_tracking.js)
-        $dados = json_decode(file_get_contents('php://input'), true);
+        $dados = $_POST;
 
-        if (!isset($dados['content_id'], $dados['tempo'], $dados['duracao'], $dados['tipo_conteudo'])) {
+        if (!isset($dados['content_id'], $dados['tempo'], $dados['completo'])) {
             http_response_code(400);
             echo json_encode(['sucesso' => false, 'mensagem' => 'Dados de progresso incompletos']);
             return;
@@ -41,14 +41,13 @@ class ControladorUsuario extends ControladorBase
         // 2. Prepara os dados para o Model
         $dadosParaSalvar = [
             'content_id' => $dados['content_id'],
-            'content_type' => $dados['tipo_conteudo'],
             'ultimo_tempo_assistido' => (int)$dados['tempo'],
-            'duracao_total' => (int)$dados['duracao'],
+            'completo' => $dados['completo'],
             'ultima_atualizacao' => date('c')
         ];
 
         // 3. Executa a lógica de salvamento no Model
-        $sucesso = $this->modeloProgresso->salvarProgresso(USUARIO_LOGADO_ID, $dadosParaSalvar);
+        $sucesso = $this->modeloProgresso->salvarProgresso($_SESSION['perfil_id'], $dadosParaSalvar);
 
         // 4. Retorna a resposta ao Front-end
         if ($sucesso) {

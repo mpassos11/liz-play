@@ -1,9 +1,4 @@
 <?php
-/**
- * CONTROLADORPROXY.PHP
- * Proxy seguro para streams Xtream Codes (HTTP/HTTPS com Certificado Inválido),
- * resolvendo Mixed Content E Erros de Certificado no servidor de stream.
- */
 
 class ControladorProxy extends ControladorBase
 {
@@ -15,15 +10,14 @@ class ControladorProxy extends ControladorBase
         $this->modeloApi = new ModeloApiIptv();
     }
 
-    public function stream() {
+    public function stream()
+    {
         // memoria
         ini_set('memory_limit', '-1');
         // tempo execucao
         ini_set('max_execution_time', '0');
 
-        $urlInsegura = '';
-
-        // --- LÓGICA DE URL ---
+        // --- LÃ“GICA DE URL ---
         if (!empty($_GET['url_proxy'])) {
             $urlInsegura = base64_decode($_GET['url_proxy']);
         } else {
@@ -31,44 +25,51 @@ class ControladorProxy extends ControladorBase
             $tipo = $_GET['tipo'] ?? 'live';
             $formato = $_GET['formato'] ?? 'm3u8';
 
-            if (!$streamId) { http_response_code(404); exit; }
+            if (!$streamId) {
+                http_response_code(404);
+                exit;
+            }
 
             $urlInsegura = $this->modeloApi->construirUrlReproducao($streamId, $tipo, $formato);
         }
 
-        if (empty($urlInsegura) || strpos($urlInsegura, 'http') !== 0) {
-            http_response_code(500); echo "Erro: URL do stream inválida."; exit;
+        if (empty($urlInsegura)) {
+            http_response_code(500);
+            echo "Erro: URL do stream invÃ¡lida.";
+            exit;
         }
 
         // ----------------------------------------------------
-        // FASE DE REQUISIÇÃO C-URL (BACKEND FETCH)
+        // FASE DE REQUISIÃ‡ÃƒO C-URL (BACKEND FETCH)
         // ----------------------------------------------------
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $urlInsegura);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'LizPlay-App-Client-Proxy');
 
         // sem timeout
         curl_setopt($ch, CURLOPT_TIMEOUT, 0);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
 
-        // *** CORREÇÃO CRÍTICA PARA IGNORAR ERRO DE CERTIFICADO ***
-        // Se a URL do stream real for HTTPS, estas linhas são obrigatórias para ignorar
-        // certificados inválidos, expirados ou autoassinados.
-        if (strpos($urlInsegura, 'https://') === 0) {
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); // Define como false em vez de 0
-        }
-        // ******************************************************
-
-        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); // Define como false em vez de 0
 
         $conteudo = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
         $error = curl_error($ch);
+
+        error_log(print_r([
+            $conteudo,
+            curl_getinfo($ch),
+            $error,
+            $urlInsegura,
+            $_GET,
+            $_REQUEST,
+            $_SERVER
+        ], true));
+
         curl_close($ch);
 
         if ($httpCode !== 200) {
@@ -85,11 +86,11 @@ class ControladorProxy extends ControladorBase
 
         $mimeType = $contentType;
 
-        // *** CORREÇÃO PARA GARANTIR O MIME TYPE CORRETO (Resolve "Navegador não suporta") ***
+        // *** CORREï¿½ï¿½O PARA GARANTIR O MIME TYPE CORRETO (Resolve "Navegador nï¿½o suporta") ***
         $urlPath = parse_url($urlInsegura, PHP_URL_PATH);
         $extension = pathinfo($urlPath, PATHINFO_EXTENSION);
 
-        // Se o cURL não retornou um MIME type útil, tenta deduzir pela extensão
+        // Se o cURL nï¿½o retornou um MIME type ï¿½til, tenta deduzir pela extensï¿½o
         if (empty($mimeType) || strpos($mimeType, 'text/plain') !== false) {
             switch (strtolower($extension)) {
                 case 'm3u8':
@@ -103,7 +104,7 @@ class ControladorProxy extends ControladorBase
                     $mimeType = 'audio/aac';
                     break;
                 default:
-                    $mimeType = 'application/octet-stream'; // Default para arquivos binários desconhecidos
+                    $mimeType = 'application/octet-stream'; // Default para arquivos binï¿½rios desconhecidos
                     break;
             }
         }

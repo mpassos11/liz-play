@@ -54,7 +54,7 @@ class ControladorHome extends ControladorBase
         $progresso = $this->modeloProgresso->obterProgresso($usuarioId);
 
         $dados = [
-            'tituloPagina' => 'Home - Liz Play',
+            'tituloPagina' => 'Home',
             'filmes' => [],
             'series' => [],
             'tv' => [],

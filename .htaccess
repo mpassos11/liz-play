@@ -23,3 +23,7 @@
     # [QSA] mantém a query string, [L] é a última regra
     RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
 </IfModule>
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    </IfModule>

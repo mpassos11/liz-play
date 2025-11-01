@@ -29,6 +29,8 @@ class ModeloProgresso extends ModeloBase
 
         $progresso = carregarDadosJson($caminho);
 
+        print_r($progresso);
+
         // Se não existir ou falhar, retorna a estrutura inicial
         return $progresso ?? ['user_id' => $usuarioId, 'progressos' => []];
     }

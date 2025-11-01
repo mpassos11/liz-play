@@ -13,7 +13,7 @@ function carregarDadosJson(string $caminhoArquivo): ?array
 {
 
     // Se o caminho não for absoluto, assume que é relativo a APP_ROOT
-    $caminhoCompleto = (substr($caminhoArquivo, 0, 1) === '/') ? $caminhoArquivo : APP_ROOT . '/' . $caminhoArquivo;
+    $caminhoCompleto = $caminhoArquivo;
 
     if (!file_exists($caminhoCompleto)) {
         // Log ou tratamento de erro: Arquivo JSON não encontrado

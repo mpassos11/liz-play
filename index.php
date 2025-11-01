@@ -4,21 +4,14 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 header('Content-type: text/html; charset=utf-8');
 
-// FORCAR APENAS HTTP
-if ($_SERVER['REQUEST_SCHEME'] === 'https') {
-    $redirectUrl = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-    header('Location: ' . $redirectUrl);
-    exit;
-}
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Define constantes úteis (caminho raiz da aplicação)
+// Define constantes ï¿½teis (caminho raiz da aplicaï¿½ï¿½o)
 define('APP_ROOT', __DIR__);
 
-// 1. Carregar Autocarga e Funções
+// 1. Carregar Autocarga e Funï¿½ï¿½es
 require_once APP_ROOT . '/core/Autocarga.php';
 require_once APP_ROOT . '/core/FuncoesGerais.php';
 require_once APP_ROOT . '/core/FuncoesConfig.php';
@@ -39,10 +32,10 @@ $uriFinal = isset($_GET['url']) ? "/{$_GET['url']}" : '';
 
 require_once APP_ROOT . '/core/Rotas.php';
 
-// Verifica se a URI atual NÃO está na lista de rotas públicas E
-// se o usuário NÃO está autenticado
+// Verifica se a URI atual Nï¿½O estï¿½ na lista de rotas pï¿½blicas E
+// se o usuï¿½rio Nï¿½O estï¿½ autenticado
 if (!ModeloAuth::estaAutenticado() && !in_array($uriFinal, ['/login', '/logar', '/sair'])) {
-    // Se a rota não é pública e não está logado, redireciona para o login
+    // Se a rota nï¿½o ï¿½ pï¿½blica e nï¿½o estï¿½ logado, redireciona para o login
     echo "<script>window.location.href = $caminhoBase/login</script>";
     exit;
 }

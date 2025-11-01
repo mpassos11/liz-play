@@ -9,8 +9,6 @@ class ControladorConteudo extends ControladorBase
     private $modeloConteudo;
     private $modeloProgresso;
 
-    private const USUARIO_ID_EXEMPLO = '12345';
-
     public function __construct()
     {
         $this->modeloConteudo = new ModeloConteudo();
@@ -36,7 +34,7 @@ class ControladorConteudo extends ControladorBase
         }
 
         // 2. Carregar Progresso do Usuário
-        $progressoUsuario = $this->modeloProgresso->buscarProgressoPorId(self::USUARIO_ID_EXEMPLO, $id);
+        $progressoUsuario = $this->modeloProgresso->buscarProgressoPorId($_SESSION['perfil_id'], $id);
 
         // Define o tempo inicial de reprodução
         $tempoInicial = $progressoUsuario['ultimo_tempo_assistido'] ?? 0;
@@ -45,7 +43,6 @@ class ControladorConteudo extends ControladorBase
             'tituloPagina' => 'Assistindo: ' . $detalhesConteudo['title'],
             'conteudo' => $detalhesConteudo,
             'tempoInicial' => $tempoInicial,
-            'usuarioId' => self::USUARIO_ID_EXEMPLO
         ];
 
         // 3. Renderizar o Player
