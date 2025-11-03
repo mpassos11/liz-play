@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8f5e211d-5e99-4513-a80a-2cdcffce7214" name="Changes" comment="feat: Remove debug prints de reprodução de vídeo (main)&#10;&#10;Remove chamadas `print_r` desnecessárias em `ModeloProgresso.php` e `ControladorProxy.php`.&#10;&#10;Essas chamadas foram adicionadas para depuração durante o desenvolvimento da funcionalidade de reprodução de vídeo e não são mais necessárias.">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/classes/Usuarios.class.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/Progresso.class.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/perfis.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env-example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ControladorBase.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ControladorConfig.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ControladorConteudo.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ControladorHome.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ControladorLogin.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ControladorProxy.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ControladorUsuario.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/ModeloApiIptv.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/ModeloAuth.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/ModeloBase.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/ModeloConteudo.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/ModeloProgresso.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/config.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/conteudo/assistir.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/home/categoria.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/home/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/home/perfis.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layout/cabecalho.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layout/rodape.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/login.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Autocarga.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/FuncoesConfig.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/FuncoesGerais.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Rotas.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Roteador.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/jquery-3.6.0.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/player_tracking.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="CSS File" />
+        <option value="PHP File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mpassos11&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mpassos11/liz-play.git&quot;,
+    &quot;accountId&quot;: &quot;2e02c946-7aba-4bb8-8b2c-b08bfdf711bc&quot;
+  }
+}</component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../../webserver/php-5.6.9-NTS/php.exe" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="34hRxLCBcXPtIf6l7oUG2MNb3N0" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp/www/liz-play/public/js&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\liz-play\public\js" />
+      <recent name="C:\wamp\www\liz-play" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\liz-play\public" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-PS-252.27397.112" />
+        <option value="bundled-php-predefined-a98d8de5180a-b35feea871ed-com.jetbrains.php.sharedIndexes-PS-252.27397.112" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8f5e211d-5e99-4513-a80a-2cdcffce7214" name="Changes" comment="" />
+      <created>1761664062254</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761664062254</updated>
+      <workItem from="1761664063488" duration="3799000" />
+      <workItem from="1761832284051" duration="13079000" />
+      <workItem from="1761919456489" duration="900000" />
+      <workItem from="1761920425819" duration="257000" />
+      <workItem from="1761920729774" duration="3134000" />
+      <workItem from="1761937913822" duration="961000" />
+      <workItem from="1762025353844" duration="9966000" />
+      <workItem from="1762170142708" duration="70000" />
+      <workItem from="1762178662091" duration="12994000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat: configurar roteamento e base URL com variáveis de ambiente&#10;&#10;Este commit refatora o sistema de roteamento e a definição do caminho&#10;base da aplicação, melhorando a flexibilidade e a portabilidade.&#10;&#10;Principais mudanças:&#10;- Introdução de um arquivo `.env` para gerenciar a URL base do projeto&#10;  (`URL_BASE`), facilitando a configuração em diferentes ambientes.&#10;- Ajustes nos arquivos `.htaccess` (na raiz e em `public/`) para&#10;  rotear todas as requisições através de `public/index.php`, incluindo&#10;  suporte a subdiretórios com `RewriteBase`.&#10;- Criação de um `index.php` na raiz do projeto para carregar as&#10;  variáveis de ambiente e redirecionar para a rota `/home`.&#10;- Atualização em `public/index.php` para utilizar `$_ENV['URL_BASE']`&#10;  e processar a URI através de `$_GET['url']`.&#10;- A rota principal da aplicação foi alterada de `/` para `/home`.">
+      <option name="closed" value="true" />
+      <created>1761666038231</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1761666038233</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: Aprimora exibição de mídia e conectividade da API&#10;&#10;Este commit introduz melhorias na exibição de conteúdo e na&#10;configuração de chamadas à API, além de refatorações internas.&#10;&#10;Principais mudanças:&#10;- Adicionada exibição de ícones de stream reais nas categorias,&#10;  substituindo placeholders para uma experiência visual aprimorada.&#10;- Desabilitada a verificação SSL para requisições cURL da API,&#10;  permitindo conexões com endpoints que possam ter certificados&#10;  autoassinados ou configurações específicas.&#10;- Refatorada a função 'salvarDadosJson' para otimizar a escrita de&#10;  dados, removendo a criação automática de diretórios e o formato&#10;  JSON_PRETTY_PRINT para maior eficiência.&#10;- Atualizado o título da página inicial de 'Home - Seu IPTV' para&#10;  'Home - Liz Play'.">
+      <option name="closed" value="true" />
+      <created>1761666988344</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1761666988344</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: Implementa paginação e aprimora player de mídia&#10;&#10;Este commit introduz a paginação para listagens de conteúdo e&#10;melhora significativamente a exibição de mídias no player,&#10;incluindo a refatoração de scripts e otimizações de carregamento.&#10;&#10;Principais mudanças:&#10;- Adicionada paginação para listagens de conteúdo nas categorias,&#10;  limitando 25 itens por página e provendo navegação entre elas.&#10;- O player de mídia agora exibe o ícone real do stream e carrega&#10;  a fonte de vídeo diretamente do conteúdo, substituindo&#10;  placeholders.&#10;- O script de inicialização do player foi refatorado e movido&#10;  de 'assistir.php' para 'player_tracking.js', centralizando&#10;  a lógica.&#10;- Implementado lazy loading para imagens de logos de canais&#10;  ('img.canal-logo') em 'player_tracking.js', otimizando o&#10;  carregamento da página.&#10;- Atualizada a referência ao script 'player_tracking.js' no&#10;  rodapé para utilizar a variável de ambiente 'URL_BASE'.&#10;- Removido o link para 'style.css' e um bloco de estilo inline&#10;  do cabeçalho, consolidando ou removendo estilos não utilizados.">
+      <option name="closed" value="true" />
+      <created>1761832590103</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1761832590103</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: Implementa sistema de autenticação de usuário&#10;&#10;Este commit introduz um sistema básico de autenticação de usuário,&#10;refatora o ponto de entrada da aplicação e centraliza o tratamento&#10;de URLs, melhorando a segurança e a manutenção do código.&#10;&#10;Principais mudanças:&#10;- Adicionado `ModeloAuth` para gerenciar a autenticação, verificação&#10;  de sessão e logout, utilizando credenciais do arquivo .env.&#10;- Criado `ControladorLogin` para exibir o formulário e processar&#10;  as requisições de login e logout.&#10;- Desenvolvida a view `login.php` com interface para o usuário.&#10;- Refatorado o `index.php` principal, movendo-o para a raiz do&#10;  projeto e removendo `public/index.php`.&#10;- Atualizado `.htaccess` para refletir a nova localização do&#10;  ponto de entrada da aplicação.&#10;- Implementada verificação de autenticação no `index.php`,&#10;  redirecionando usuários não logados para a página de login,&#10;  exceto para rotas públicas como '/login' e '/sair'.&#10;- Adicionada a função auxiliar `baseUrl()` em `FuncoesGerais.php`&#10;  para gerar URLs dinamicamente, substituindo referências manuais.&#10;- Atualizados todos os links nas views (`home/index.php`,&#10;  `home/categoria.php`, `layout/cabecalho.php`) para usar `baseUrl()`.&#10;- Modificado `ControladorBase` para não renderizar cabeçalho e&#10;  rodapé na página de login, provendo uma experiência dedicada.&#10;- O cabeçalho agora exibe o nome de usuário logado e um link para sair.">
+      <option name="closed" value="true" />
+      <created>1761835120594</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1761835120594</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat(config): adicionar página de configurações de IPTV&#10;&#10;Implementa uma nova interface para gerenciar as configurações da&#10;API IPTV. Isso inclui:&#10;&#10;- Criação da view `app/views/config.php` com formulário para&#10;  URL da API, usuário e senha.&#10;- Adição do `ControladorConfig.php` para exibir e processar as&#10;  atualizações das credenciais IPTV no arquivo `.env`.&#10;- Refatoração das definições de rotas para `core/Rotas.php`,&#10;  movendo-as de `index.php`.&#10;- Inclusão de novas rotas `/config` e `/config/atualizar`.&#10;- Adição de um link &quot;Configurações&quot; no cabeçalho da aplicação.">
+      <option name="closed" value="true" />
+      <created>1761838595691</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1761838595691</updated>
+    </task>
+    <task id="LOCAL-00006" summary="video.js lib">
+      <option name="closed" value="true" />
+      <created>1761838732470</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1761838732470</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix">
+      <option name="closed" value="true" />
+      <created>1761846670714</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1761846670714</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix">
+      <option name="closed" value="true" />
+      <created>1761846788849</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1761846788849</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix: Adiciona fallback para imagem e força HTTP (main)&#10;&#10;Corrige a exibição de imagens e força o uso de HTTP em vez de HTTPS.&#10;&#10;No `ModeloApiIptv.php`, adiciona um fallback para `stream_icon` usando o campo `cover` caso `stream_icon` não esteja presente.&#10;&#10;No `ControladorHome.php`, comenta a carga dos dados de filmes, séries e TV, definindo-os como arrays vazios. Isso é uma correção temporária ou preparatória para refatoração.&#10;&#10;No `index.php`, adiciona uma verificação para redirecionar requisições HTTPS para HTTP, garantindo o uso de HTTP. Além disso, substitui o header de redirecionamento para a página de login por um script `echo` para garantir que o redirecionamento funcione corretamente em todos os cenários.">
+      <option name="closed" value="true" />
+      <created>1761920240348</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1761920240348</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fix: Implementa seleção de perfil e força HTTP (main)&#10;&#10;Adiciona funcionalidade de seleção de perfil e garante o uso de HTTP.&#10;&#10;- **core/Rotas.php**: Adiciona a rota '/trocar-perfil' para gerenciar a troca de perfis.&#10;- **app/views/home/perfis.php**: Cria uma nova view para a tela de seleção de perfis.&#10;- **app/controllers/ControladorHome.php**:&#10;    - Implementa a lógica para selecionar e armazenar o perfil do usuário na sessão.&#10;    - Caso nenhum perfil seja selecionado, exibe a tela de perfis.&#10;    - Adiciona a rota `trocar_perfil` para limpar a sessão do perfil.&#10;    - Comenta a carga de dados de filmes, séries e TV como uma medida temporária.&#10;- **app/views/layout/cabecalho.php**:&#10;    - Atualiza a saudação para exibir o nome do usuário logado.&#10;    - Adiciona um link para trocar de perfil.">
+      <option name="closed" value="true" />
+      <created>1761921533931</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1761921533931</updated>
+    </task>
+    <task id="LOCAL-00011" summary="reprodução de video">
+      <option name="closed" value="true" />
+      <created>1762027710014</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1762027710014</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat: Remove debug prints de reprodução de vídeo (main)&#10;&#10;Remove chamadas `print_r` desnecessárias em `ModeloProgresso.php` e `ControladorProxy.php`.&#10;&#10;Essas chamadas foram adicionadas para depuração durante o desenvolvimento da funcionalidade de reprodução de vídeo e não são mais necessárias.">
+      <option name="closed" value="true" />
+      <created>1762027835289</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1762027835289</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="```&#10;feat: Implementa reprodução HLS e proxy para streams ao vivo&#10;&#10;Adiciona suporte robusto para reprodução de streams HLS,&#10;especialmente para conteúdo de TV ao vivo.&#10;&#10;Detalhes:&#10;- Integração de hls.js e Video.js para gerenciamento de streams HLS.&#10;- Introdução de um controlador de proxy para lidar com links de stream HTTP&#10;  inseguros, resolvendo problemas de &quot;conteúdo misto&quot;" />
+    <MESSAGE value="```&#10;feat: Implementa reprodução HLS e proxy para streams ao vivo&#10;&#10;Adiciona suporte robusto para reprodução de streams HLS,&#10;especialmente para conteúdo de TV ao vivo.&#10;&#10;Detalhes:&#10;- Integração de hls.js e Video.js para gerenciamento de streams HLS.&#10;- Introdução de um controlador de proxy para lidar com links de stream HTTP&#10;  inseguros, resolvendo problemas de &quot;conteúdo misto&quot; em navegadores.&#10;  Isso permite que streams HTTP sejam servidos via HTTPS.&#10;- O rastreamento de progresso do player foi desativado para conteúdo&#10;  do tipo 'tv', pois não é aplicável a" />
+    <MESSAGE value="```&#10;feat: Implementa reprodução HLS e proxy para streams ao vivo&#10;&#10;Adiciona suporte robusto para reprodução de streams HLS,&#10;especialmente para conteúdo de TV ao vivo.&#10;&#10;Detalhes:&#10;- Integração de hls.js e Video.js para gerenciamento de streams HLS.&#10;- Introdução de um controlador de proxy para lidar com links de stream HTTP&#10;  inseguros, resolvendo problemas de &quot;conteúdo misto&quot; em navegadores.&#10;  Isso permite que streams HTTP sejam servidos via HTTPS.&#10;- O rastreamento de progresso do player foi desativado para conteúdo&#10;  do tipo 'tv', pois não é aplicável a transmissões ao vivo.&#10;- Scripts e estilos agora utilizam cache busting para garantir&#10;  o carregamento das versões mais recentes.&#10;```" />
+    <MESSAGE value="{&#13;&#10;  &quot;error&quot;: {&#13;&#10;    &quot;code&quot;: 429,&#13;&#10;    &quot;message&quot;: &quot;You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 250000\nPlease retry in 54.023070944s.&quot;,&#13;&#10;    &quot;status&quot;: &quot;RESOURCE_EXHAUSTED&quot;,&#13;&#10;    &quot;details&quot;: [&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.Help&quot;,&#13;&#10;        &quot;links&quot;: [&#13;&#10;          {&#13;&#10;            &quot;description&quot;: &quot;Learn more about Gemini API quotas&quot;,&#13;&#10;            &quot;url&quot;: &quot;https://ai.google.dev/gemini-api/docs/rate-limits&quot;&#13;&#10;          }&#13;&#10;        ]&#13;&#10;      },&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.QuotaFailure&quot;,&#13;&#10;        &quot;violations&quot;: [&#13;&#10;          {&#13;&#10;            &quot;quotaMetric&quot;: &quot;generativelanguage.googleapis.com/generate_content_free_tier_input_token_count&quot;,&#13;&#10;            &quot;quotaId&quot;: &quot;GenerateContentInputTokensPerModelPerMinute-FreeTier&quot;,&#13;&#10;            &quot;quotaDimensions&quot;: {&#13;&#10;              &quot;location&quot;: &quot;global&quot;,&#13;&#10;              &quot;model&quot;: &quot;gemini-2.5-flash&quot;&#13;&#10;            },&#13;&#10;            &quot;quotaValue&quot;: &quot;250000&quot;&#13;&#10;          }&#13;&#10;        ]&#13;&#10;      },&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.RetryInfo&quot;,&#13;&#10;        &quot;retryDelay&quot;: &quot;54s&quot;&#13;&#10;      }&#13;&#10;    ]&#13;&#10;  }&#13;&#10;}" />
+    <MESSAGE value="{&#13;&#10;  &quot;error&quot;: {&#13;&#10;    &quot;code&quot;: 429,&#13;&#10;    &quot;message&quot;: &quot;You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 250000\nPlease retry in 6.404534855s.&quot;,&#13;&#10;    &quot;status&quot;: &quot;RESOURCE_EXHAUSTED&quot;,&#13;&#10;    &quot;details&quot;: [&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.Help&quot;,&#13;&#10;        &quot;links&quot;: [&#13;&#10;          {&#13;&#10;            &quot;description&quot;: &quot;Learn more about Gemini API quotas&quot;,&#13;&#10;            &quot;url&quot;: &quot;https://ai.google.dev/gemini-api/docs/rate-limits&quot;&#13;&#10;          }&#13;&#10;        ]&#13;&#10;      },&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.QuotaFailure&quot;,&#13;&#10;        &quot;violations&quot;: [&#13;&#10;          {&#13;&#10;            &quot;quotaMetric&quot;: &quot;generativelanguage.googleapis.com/generate_content_free_tier_input_token_count&quot;,&#13;&#10;            &quot;quotaId&quot;: &quot;GenerateContentInputTokensPerModelPerMinute-FreeTier&quot;,&#13;&#10;            &quot;quotaDimensions&quot;: {&#13;&#10;              &quot;location&quot;: &quot;global&quot;,&#13;&#10;              &quot;model&quot;: &quot;gemini-2.5-flash&quot;&#13;&#10;            },&#13;&#10;            &quot;quotaValue&quot;: &quot;250000&quot;&#13;&#10;          }&#13;&#10;        ]&#13;&#10;      },&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.RetryInfo&quot;,&#13;&#10;        &quot;retryDelay&quot;: &quot;6s&quot;&#13;&#10;      }&#13;&#10;    ]&#13;&#10;  }&#13;&#10;}" />
+    <MESSAGE value="{&#13;&#10;  &quot;error&quot;: {&#13;&#10;    &quot;code&quot;: 429,&#13;&#10;    &quot;message&quot;: &quot;You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 250000\nPlease retry in 55.794955997s.&quot;,&#13;&#10;    &quot;status&quot;: &quot;RESOURCE_EXHAUSTED&quot;,&#13;&#10;    &quot;details&quot;: [&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.Help&quot;,&#13;&#10;        &quot;links&quot;: [&#13;&#10;          {&#13;&#10;            &quot;description&quot;: &quot;Learn more about Gemini API quotas&quot;,&#13;&#10;            &quot;url&quot;: &quot;https://ai.google.dev/gemini-api/docs/rate-limits&quot;&#13;&#10;          }&#13;&#10;        ]&#13;&#10;      },&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.QuotaFailure&quot;,&#13;&#10;        &quot;violations&quot;: [&#13;&#10;          {&#13;&#10;            &quot;quotaMetric&quot;: &quot;generativelanguage.googleapis.com/generate_content_free_tier_input_token_count&quot;,&#13;&#10;            &quot;quotaId&quot;: &quot;GenerateContentInputTokensPerModelPerMinute-FreeTier&quot;,&#13;&#10;            &quot;quotaDimensions&quot;: {&#13;&#10;              &quot;model&quot;: &quot;gemini-2.5-flash&quot;,&#13;&#10;              &quot;location&quot;: &quot;global&quot;&#13;&#10;            },&#13;&#10;            &quot;quotaValue&quot;: &quot;250000&quot;&#13;&#10;          }&#13;&#10;        ]&#13;&#10;      },&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.RetryInfo&quot;,&#13;&#10;        &quot;retryDelay&quot;: &quot;55s&quot;&#13;&#10;      }&#13;&#10;    ]&#13;&#10;  }&#13;&#10;}" />
+    <MESSAGE value="fix" />
+    <MESSAGE value="fix: Adiciona fallback para imagem e força HTTP (main)&#10;&#10;Corrige a" />
+    <MESSAGE value="fix: Adiciona fallback para imagem e força HTTP (main)&#10;&#10;Corrige a exibição de imagens e força o uso de HTTP em vez de HTTPS.&#10;&#10;No `ModeloApiIptv.php`, adiciona um fallback para `stream_icon` usando o campo `cover` caso `stream_icon` não esteja" />
+    <MESSAGE value="fix: Adiciona fallback para imagem e força HTTP (main)&#10;&#10;Corrige a exibição de imagens e força o uso de HTTP em vez de HTTPS.&#10;&#10;No `ModeloApiIptv.php`, adiciona um fallback para `stream_icon` usando o campo `cover` caso `stream_icon` não esteja presente.&#10;&#10;No `ControladorHome.php`, comenta a carga dos dados de filmes, séries e TV, definindo-os como arrays vazios. Isso é uma correção temporária ou preparatória para refatoração.&#10;&#10;No `index.php" />
+    <MESSAGE value="fix: Adiciona fallback para imagem e força HTTP (main)&#10;&#10;Corrige a exibição de imagens e força o uso de HTTP em vez de HTTPS.&#10;&#10;No `ModeloApiIptv.php`, adiciona um fallback para `stream_icon` usando o campo `cover` caso `stream_icon` não esteja presente.&#10;&#10;No `ControladorHome.php`, comenta a carga dos dados de filmes, séries e TV, definindo-os como arrays vazios. Isso é uma correção temporária ou preparatória para refatoração.&#10;&#10;No `index.php`, adiciona uma verificação para redirecionar requisições HTTPS para HTTP, garantindo o uso de HTTP. Além disso, substitui o header de redirecionamento para a página de login por um script `echo` para garantir que o redire" />
+    <MESSAGE value="fix: Adiciona fallback para imagem e força HTTP (main)&#10;&#10;Corrige a exibição de imagens e força o uso de HTTP em vez de HTTPS.&#10;&#10;No `ModeloApiIptv.php`, adiciona um fallback para `stream_icon` usando o campo `cover` caso `stream_icon` não esteja presente.&#10;&#10;No `ControladorHome.php`, comenta a carga dos dados de filmes, séries e TV, definindo-os como arrays vazios. Isso é uma correção temporária ou preparatória para refatoração.&#10;&#10;No `index.php`, adiciona uma verificação para redirecionar requisições HTTPS para HTTP, garantindo o uso de HTTP. Além disso, substitui o header de redirecionamento para a página de login por um script `echo` para garantir que o redirecionamento funcione corretamente em todos os cenários." />
+    <MESSAGE value="```&#10;fix: Implement" />
+    <MESSAGE value="```&#10;fix: Implementa seleção de perfil e força HTTP (main)&#10;&#10;Adiciona funcionalidade de seleção de" />
+    <MESSAGE value="```&#10;fix: Implementa seleção de perfil e força HTTP (main)&#10;&#10;Adiciona funcionalidade de seleção de perfil e garante o uso de HTTP.&#10;&#10;- **core/Rotas.php**: Adiciona a rota '/trocar-perfil' para gerenciar a troca de perfis.&#10;- **app/views/home/perf" />
+    <MESSAGE value="```&#10;fix: Implementa seleção de perfil e força HTTP (main)&#10;&#10;Adiciona funcionalidade de seleção de perfil e garante o uso de HTTP.&#10;&#10;- **core/Rotas.php**: Adiciona a rota '/trocar-perfil' para gerenciar a troca de perfis.&#10;- **app/views/home/perfis.php**: Cria uma nova view para a tela de seleção de perfis.&#10;- **app/controllers/ControladorHome.php**:&#10;    - Implementa a lógica para selecionar e armazenar o perfil do usuário na sessão.&#10;    " />
+    <MESSAGE value="```&#10;fix: Implementa seleção de perfil e força HTTP (main)&#10;&#10;Adiciona funcionalidade de seleção de perfil e garante o uso de HTTP.&#10;&#10;- **core/Rotas.php**: Adiciona a rota '/trocar-perfil' para gerenciar a troca de perfis.&#10;- **app/views/home/perfis.php**: Cria uma nova view para a tela de seleção de perfis.&#10;- **app/controllers/ControladorHome.php**:&#10;    - Implementa a lógica para selecionar e armazenar o perfil do usuário na sessão.&#10;    - Caso nenhum perfil seja selecionado, exibe a tela de perfis.&#10;    - Adiciona a rota `trocar_perfil` para limpar a sessão do perfil.&#10;    - Comenta a carga de dados de filmes, séries e" />
+    <MESSAGE value="```&#10;fix: Implementa seleção de perfil e força HTTP (main)&#10;&#10;Adiciona funcionalidade de seleção de perfil e garante o uso de HTTP.&#10;&#10;- **core/Rotas.php**: Adiciona a rota '/trocar-perfil' para gerenciar a troca de perfis.&#10;- **app/views/home/perfis.php**: Cria uma nova view para a tela de seleção de perfis.&#10;- **app/controllers/ControladorHome.php**:&#10;    - Implementa a lógica para selecionar e armazenar o perfil do usuário na sessão.&#10;    - Caso nenhum perfil seja selecionado, exibe a tela de perfis.&#10;    - Adiciona a rota `trocar_perfil` para limpar a sessão do perfil.&#10;    - Comenta a carga de dados de filmes, séries e TV como uma medida temporária.&#10;- **app/views/layout/cabecalho.php**:&#10;    - Atualiza a saudação para exibir o nome do usuário logado.&#10;    - Adiciona um link para trocar de" />
+    <MESSAGE value="```&#10;fix: Implementa seleção de perfil e força HTTP (main)&#10;&#10;Adiciona funcionalidade de seleção de perfil e garante o uso de HTTP.&#10;&#10;- **core/Rotas.php**: Adiciona a rota '/trocar-perfil' para gerenciar a troca de perfis.&#10;- **app/views/home/perfis.php**: Cria uma nova view para a tela de seleção de perfis.&#10;- **app/controllers/ControladorHome.php**:&#10;    - Implementa a lógica para selecionar e armazenar o perfil do usuário na sessão.&#10;    - Caso nenhum perfil seja selecionado, exibe a tela de perfis.&#10;    - Adiciona a rota `trocar_perfil` para limpar a sessão do perfil.&#10;    - Comenta a carga de dados de filmes, séries e TV como uma medida temporária.&#10;- **app/views/layout/cabecalho.php**:&#10;    - Atualiza a saudação para exibir o nome do usuário logado.&#10;    - Adiciona um link para trocar de perfil.&#10;```" />
+    <MESSAGE value="fix: Implementa seleção de perfil e força HTTP (main)&#10;&#10;Adiciona funcionalidade de seleção de perfil e garante o uso de HTTP.&#10;&#10;- **core/Rotas.php**: Adiciona a rota '/trocar-perfil' para gerenciar a troca de perfis.&#10;- **app/views/home/perfis.php**: Cria uma nova view para a tela de seleção de perfis.&#10;- **app/controllers/ControladorHome.php**:&#10;    - Implementa a lógica para selecionar e armazenar o perfil do usuário na sessão.&#10;    - Caso nenhum perfil seja selecionado, exibe a tela de perfis.&#10;    - Adiciona a rota `trocar_perfil` para limpar a sessão do perfil.&#10;    - Comenta a carga de dados de filmes, séries e TV como uma medida temporária.&#10;- **app/views/layout/cabecalho.php**:&#10;    - Atualiza a saudação para exibir o nome do usuário logado.&#10;    - Adiciona um link para trocar de perfil." />
+    <MESSAGE value="reprodução de video" />
+    <MESSAGE value="feat" />
+    <MESSAGE value="feat: Remove debug prints de reprodução de vídeo (main)&#10;&#10;Remove chamadas `" />
+    <MESSAGE value="feat: Remove debug prints de reprodução de vídeo (main)&#10;&#10;Remove chamadas `print_r` desnecessárias em `ModeloProgresso.php` e `ControladorProxy.php`.&#10;&#10;Essas chamadas foram adicionadas para depuração durante o desenvolvimento da funcionalidade de reprodução de vídeo e não são mais necessárias" />
+    <MESSAGE value="feat: Remove debug prints de reprodução de vídeo (main)&#10;&#10;Remove chamadas `print_r` desnecessárias em `ModeloProgresso.php` e `ControladorProxy.php`.&#10;&#10;Essas chamadas foram adicionadas para depuração durante o desenvolvimento da funcionalidade de reprodução de vídeo e não são mais necessárias." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Remove debug prints de reprodução de vídeo (main)&#10;&#10;Remove chamadas `print_r` desnecessárias em `ModeloProgresso.php` e `ControladorProxy.php`.&#10;&#10;Essas chamadas foram adicionadas para depuração durante o desenvolvimento da funcionalidade de reprodução de vídeo e não são mais necessárias." />
+    <option name="NON_MODAL_COMMIT_POSTPONE_SLOW_CHECKS" value="false" />
+  </component>
+</project>

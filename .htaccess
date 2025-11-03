@@ -1,29 +1,13 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
+RewriteEngine On
 
-    # ----------------------------------------------------
-    # AJUSTE CRÍTICO PARA SUBDIRETÓRIOS (localhost)
-    # ----------------------------------------------------
-    # O Apache precisa saber que a raiz do seu projeto é /liz-play/
-    # Se você estivesse na raiz do domínio (como liz-play.com.br), seria apenas RewriteBase /
-    # RewriteBase /liz-play/
+# Desabilitar a listagem de diret�rios
+Options -Indexes
 
-    # 1. Proteção e Otimização
-    Options -Indexes
-    # Bloqueio de acesso direto a pastas críticas (mantido)
-    RewriteRule ^(app|core|config\.php|content|users)/ - [F,L]
+# Permitir acesso direto � pasta public/imagens
+RewriteCond %{REQUEST_URI} ^/public/imagens/ [NC]
+RewriteRule ^public/imagens/(.*)$ public/imagens/$1 [L]
 
-    # 2. Impedir loops e acesso a arquivos/diretórios reais
-    # Se for um arquivo/diretório real dentro da raiz (ex: .htaccess, robots.txt), para
-    RewriteCond %{REQUEST_FILENAME} -f [OR]
-    RewriteCond %{REQUEST_FILENAME} -d
-    RewriteRule ^ - [L]
-
-    # 3. Regra principal: Redireciona TUDO para o public/index.php
-    # [QSA] mantém a query string, [L] é a última regra
-    RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
-</IfModule>
-
-<IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "*"
-    </IfModule>
+# Redirecionar todas as outras requisi��es para o index.php, exceto se for um arquivo ou diret�rio existente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]

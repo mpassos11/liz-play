@@ -1,0 +1,20 @@
+body {
+	background: black;
+}
+
+.container {
+	max-width: 100% !important;
+}
+
+#navbar {
+	display: none;
+}
+
+#btn-proximo-ep {
+	position: fixed;
+	bottom: 10%;
+	right: 10%;
+	background-color: #cecece;
+	color: black;
+	display: none;
+}
