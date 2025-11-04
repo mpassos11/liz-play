@@ -76,7 +76,7 @@ class Navegacao
         }
         view('assistir', [
             'stream' => $stream,
-            'titulo' => $stream['title']
+            'titulo' => $stream['title'],
         ], ['player']);
     }
 }

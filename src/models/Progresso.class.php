@@ -39,6 +39,12 @@ class ModeloProgresso
 
         $progresso = carregarDadosJson($caminho);
 
+        if ($progresso) {
+            foreach ($progresso['progressos'] as $k => $item) {
+                $progresso['progressos'][$k] = array_merge($item, $GLOBALS['IPTV']->obterDetalhes($item['tipo'], $item['content_id']));
+            }
+        }
+
         // Se não existir ou falhar, retorna a estrutura inicial
         return $progresso ?? ['user_id' => $usuarioId, 'progressos' => []];
     }

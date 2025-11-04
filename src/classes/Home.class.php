@@ -14,8 +14,10 @@ class Home
             $_SESSION['perfil_id'] = $_GET['id'];
         }
 
+        $ultimosAssistidos = (new ModeloProgresso())->obterProgresso($_SESSION['perfil_id']);
+
 		view('home', [
-			'ultimosAssistidos' => [],
+			'ultimosAssistidos' => $ultimosAssistidos,
 			'seriesAleatorias' => [],
 			'filmesAleatorios' => []
 		]);

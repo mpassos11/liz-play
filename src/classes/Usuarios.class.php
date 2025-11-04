@@ -28,7 +28,8 @@ class Usuarios
             'content_id' => $dados['content_id'],
             'ultimo_tempo_assistido' => (int)$dados['tempo'],
             'completo' => $dados['completo'],
-            'ultima_atualizacao' => date('c')
+            'ultima_atualizacao' => date('c'),
+            'tipo' => $dados['tipo'],
         ];
 
         $modeloProgresso = new ModeloProgresso();

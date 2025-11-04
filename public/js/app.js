@@ -1,20 +1,5 @@
 $(document).ready(function () {
-    if ("IntersectionObserver" in window) {
-        let lazyImageObserver = new IntersectionObserver(function (entries, observer) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    let lazyImage = entry.target;
-                    lazyImage.src = lazyImage.dataset.src;
-                    lazyImage.classList.remove("canal-logo");
-                    lazyImageObserver.unobserve(lazyImage);
-                }
-            });
-        });
-
-        lazyImages.forEach(function (lazyImage) {
-            lazyImageObserver.observe(lazyImage);
-        });
-    }
+    definirCarousel();
 });
 
 // Obtenha o input e os elementos de item

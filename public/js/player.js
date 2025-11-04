@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     // Função de Salvamento (Chama seu Backend)
     function salvarProgresso(tempoAtual, videoTerminou = false) {
-        if (tempoAtual <= 0) return; // Não salvar tempo 0
+        if (tempoAtual <= 0 || tipoConteudo === 'tv') return; // Não salvar tempo 0
 
         // Verifica se houve uma diferença significativa no tempo desde o último salvamento
         if (Math.abs(tempoAtual - ultimoTempoSalvo) < 5 && !videoTerminou) {
@@ -17,6 +17,7 @@ $(document).ready(function () {
             url: urlDeSalvamento,
             method: 'POST',
             data: {
+                tipo: tipoConteudo,
                 content_id: videoId,
                 tempo: tempoAtual, // Em segundos
                 completo: videoTerminou ? 1 : 0

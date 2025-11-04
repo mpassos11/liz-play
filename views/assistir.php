@@ -17,4 +17,5 @@
     const videoId = <?= $stream['stream_id'] ?>;
     const tempoAssistido = <?= $stream['ultimo_tempo_assistido'] ?: 0 ?>;
     const urlDeSalvamento = "<?= base_url('/api/salvar-progresso') ?>";
+    const tipoConteudo = "<?= $stream['tipo'] ?>";
 </script>
