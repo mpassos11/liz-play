@@ -102,6 +102,6 @@ class Navegacao
             'titulo' => $stream['title'],
             'episodios' => $episodios,
             'progresso' => $progresso
-        ], ['player']);
+        ], ['reprodutor', 'player'], ['player']);
     }
 }

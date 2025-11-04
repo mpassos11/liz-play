@@ -1,20 +1,110 @@
-body {
-	background: black;
+/* Container Principal do Player */
+.video-container {
+    position: relative;
+    width: 80%; /* Ajuste a largura conforme necessário */
+    max-width: 1000px;
+    background-color: #000;
 }
 
-.container {
-	max-width: 100% !important;
+/* O Player de Vídeo em si */
+.video-container video {
+    display: block;
+    width: 100%;
 }
 
-#navbar {
-	display: none;
+/* ------------------------------------- */
+/* CONTROLES PERSONALIZADOS (Netflix Style) */
+/* ------------------------------------- */
+
+.video-controls, .video-header {
+    position: absolute;
+    width: 100%;
+    padding: 15px 30px;
+    box-sizing: border-box;
+    color: #fff;
+    transition: opacity 0.3s ease;
+    opacity: 0; /* Começa oculto */
+    z-index: 10;
+    pointer-events: none; /* Permite clicar no vídeo por baixo */
 }
 
-#btn-proximo-ep {
-	position: fixed;
-	bottom: 10%;
-	right: 10%;
-	background-color: #cecece;
-	color: black;
-	display: none;
+.video-container.controls-visible .video-controls,
+.video-container.controls-visible .video-header {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* 1. TÍTULO NO TOPO (Header) */
+.video-header {
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+    text-align: left;
+}
+
+.video-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* 2. BARRA DE CONTROLES INFERIOR */
+.video-controls {
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    padding-top: 50px; /* Mais padding em cima para a barra de tempo */
+}
+
+/* Botões */
+.controls-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.controls-left button, .controls-right button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-right: 10px;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.controls-left button:hover, .controls-right button:hover {
+    color: #ccc;
+}
+
+/* Barra de Progresso (Timeline) - Estilo Netflix */
+.progress-bar-container {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    border-radius: 2px;
+    margin-bottom: 5px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #e50914; /* Cor de destaque (vermelho) */
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}
+
+/* 3. Ícones (Usando Unicode para simplicidade, mas você usaria SVG ou Font Awesome) */
+.play-icon::before {
+    content: '?';
+}
+
+.pause-icon::before {
+    content: '?';
+}
+
+.fullscreen-icon::before {
+    content: '?';
 }

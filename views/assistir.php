@@ -31,16 +31,43 @@
     <hr>
 <?php endif; ?>
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="ratio ratio-16x9 mb-4 bg-black" style="height: 75vh !important;">
-            <video
-                    id="video"
-                    controls
-                    autoplay
-                    src="<?= $stream['stream_link'] ?>"
-                    poster="<?= $stream['stream_icon'] ?>"
-            ></video>
+<div class="video-container" id="videoContainer">
+    <video id="video" poster="<?= $stream['stream_icon'] ?>" autoplay onclick="togglePlayPause()">
+        <source src="<?= $stream['stream_link'] ?>">
+        Seu navegador não suporta a tag de vídeo.
+    </video>
+
+    <div class="video-header">
+        <h3 id="videoTitle"><?= $stream['title'] ?></h3>
+    </div>
+
+    <div class="video-controls">
+        <div class="progress-bar-container" id="progressBarContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="controls-row">
+            <div class="controls-left">
+                <button id="playPauseBtn" onclick="togglePlayPause()">
+                    <i id="playPauseIcon" class="fas fa-play"></i>
+                </button>
+
+                <button id="muteBtn" onclick="toggleMute()">
+                    <i id="volumeIcon" class="fas fa-volume-up"></i>
+                </button>
+
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1" style="width: 80px;">
+            </div>
+
+            <div class="time-display">
+                <span id="currentTime">0:00</span> / <span id="durationTime">0:00</span>
+            </div>
+
+            <div class="controls-right">
+                <button onclick="toggleFullScreen()">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
         </div>
     </div>
 </div>
