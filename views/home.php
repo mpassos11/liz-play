@@ -1,16 +1,9 @@
 <div class="container">
 	<div class="row">
 		<?php if (!empty($ultimosAssistidos)): ?>
-			<div class="col-md-12">
-				<h3>Últimos Assistidos</h3>
-				<div class="row slick-carousel">
-					<?php foreach ($ultimosAssistidos['progressos'] as $stream): ?>
-                        <a href="<?= base_url("assistir/{$stream['tipo']}/{$stream['stream_id']}") ?>">
-                            <img src="<?= $stream['stream_icon'] ?>" class="img-fluid img-thumbnail rounded lazy" alt="<?= $stream['title'] ?>">
-                        </a>
-					<?php endforeach; ?>
-				</div>
-			</div>
+            <?php foreach (['Últimos Assistidos' => $ultimosAssistidos['progressos']] as $categoria => $item): ?>
+                <?php echo Navegacao::renderizarConteudo($categoria, $item); ?>
+            <?php endforeach; ?>
 		<?php endif; ?>
 		
 		<?php if (!empty($seriesAleatorias)): ?>

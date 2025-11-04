@@ -56,16 +56,20 @@ class Navegacao
         $paginaAtual = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
         $offset = ($paginaAtual - 1) * $limitePorPagina;
 
-        // 2. Calcula o total de páginas
-        $totalConteudo = count($conteudo);
-        $totalPaginas = ceil($totalConteudo / $limitePorPagina);
+        if ($tipoConteudo === TV_TIPO) {
+            $conteudoAExibir = $this->iptv->ordenarCanaisTV($conteudo);
+        } else {
+            // 2. Calcula o total de páginas
+            $totalConteudo = count($conteudo);
+            $totalPaginas = ceil($totalConteudo / $limitePorPagina);
 
-        // 3. Aplica a paginação (limita o array)
-        $conteudoAExebir = array_slice($conteudo, $offset, $limitePorPagina);
+            // 3. Aplica a paginação (limita o array)
+            $conteudoAExibir = array_slice($conteudo, $offset, $limitePorPagina);
+        }
 
         $dados = [
             'titulo' => ucwords($tipoConteudo),
-            'conteudo' => $conteudoAExebir,
+            'conteudo' => $conteudoAExibir,
             'tipo' => $tipoConteudo,
             'paginaAtual' => $paginaAtual,
             'totalPaginas' => $totalPaginas,
@@ -103,5 +107,39 @@ class Navegacao
             'episodios' => $episodios,
             'progresso' => $progresso
         ], ['reprodutor', 'player'], ['player']);
+    }
+
+    public static function renderizarConteudo($categoria, $item): string
+    {
+        $html = '';
+        if (empty($item['title']) && is_array($item)) {
+            $html .= "<div class='col-md-12'><h4>". ucfirst($categoria) ."</h4><div class='slick-carousel row'>";
+            foreach ($item as $value) {
+                $html .= self::renderizarConteudo($categoria, $value);
+            }
+            $html .= "</div></div>";
+        } else {
+            $html = '<div class="col">
+                    <div class="card bg-dark text-white h-100 shadow-sm border-0">
+
+                        <img src="' . $item['stream_icon'] . '"
+                             class="card-img-top"
+                             style="object-fit: cover; height: 250px; padding: 20px">
+
+                        <div class="card-body p-3">
+                            <h6 class="card-title text-truncate"
+                                title="' . htmlspecialchars($item['title'] ?? 'Sem Título') . '">
+                                ' . htmlspecialchars($item['title'] ?? 'Sem Título') . '
+                            </h6>
+                            <a href="' . base_url("assistir/{$item['tipo']}/{$item['stream_id']}") . '"
+                               class="btn btn-sm btn-danger w-100 mt-2">
+                                Assistir Agora
+                            </a>
+                        </div>
+                    </div>
+                </div>';
+        }
+
+        return $html;
     }
 }

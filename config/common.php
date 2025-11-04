@@ -151,10 +151,7 @@ function view($view, $data = [], $js = [], $css = [])
         'jquery-3.6.0.min',
         'lazyload.min',
         'slick',
-        'clappr',
-        'clappr-queue-plugin.min',
         'app',
-        'player'
     ], $js);
 
     $css = array_merge([
