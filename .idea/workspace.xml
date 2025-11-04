@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f5e211d-5e99-4513-a80a-2cdcffce7214" name="Changes" comment="fix">
-      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/player.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/IPTV.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/IPTV.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Navegacao.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Navegacao.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Usuarios.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Usuarios.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Progresso.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Progresso.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/assistir.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/assistir.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +108,7 @@
       <workItem from="1762178662091" duration="13903000" />
       <workItem from="1762252972716" duration="2435000" />
       <workItem from="1762258833916" duration="14000" />
-      <workItem from="1762271108027" duration="3065000" />
+      <workItem from="1762271108027" duration="3296000" />
     </task>
     <task id="LOCAL-00001" summary="feat: configurar roteamento e base URL com variáveis de ambiente&#10;&#10;Este commit refatora o sistema de roteamento e a definição do caminho&#10;base da aplicação, melhorando a flexibilidade e a portabilidade.&#10;&#10;Principais mudanças:&#10;- Introdução de um arquivo `.env` para gerenciar a URL base do projeto&#10;  (`URL_BASE`), facilitando a configuração em diferentes ambientes.&#10;- Ajustes nos arquivos `.htaccess` (na raiz e em `public/`) para&#10;  rotear todas as requisições através de `public/index.php`, incluindo&#10;  suporte a subdiretórios com `RewriteBase`.&#10;- Criação de um `index.php` na raiz do projeto para carregar as&#10;  variáveis de ambiente e redirecionar para a rota `/home`.&#10;- Atualização em `public/index.php` para utilizar `$_ENV['URL_BASE']`&#10;  e processar a URI através de `$_GET['url']`.&#10;- A rota principal da aplicação foi alterada de `/` para `/home`.">
       <option name="closed" value="true" />
@@ -230,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762253155289</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fix">
+      <option name="closed" value="true" />
+      <created>1762274267005</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1762274267005</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -3,8 +3,12 @@ $(document).ready(function () {
     const intervaloSalvamento = 10; // Salvar a cada 10 segundos
     var ultimoTempoSalvo = 0;
 
-    if (typeof progresso != 'undefined' && progresso['tipo_conteudo'] === 'series') {
-        reproduzirEpisodio(progresso['ep_id'], progresso['tp_id']);
+    if (tipoConteudo === 'series') {
+        if (typeof progresso != 'undefined' && progresso['tipo_conteudo'] === 'series') {
+            reproduzirEpisodio(progresso['ep_id'], progresso['tp_id']);
+        } else {
+            reproduzirEpisodio(episodios[1][0]['id'], 1);
+        }
     }
 
     // Função de Salvamento (Chama seu Backend)
