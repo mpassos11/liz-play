@@ -7,6 +7,7 @@ class IPTV
     private $password;
     private $diretorioCache = COMMON_PATH . '/content/';
     private const CACHE_TTL = 86400; // 24 * 60 * 60
+    private ModeloProgresso $modeloProgresso;
 
     public function __construct()
     {
@@ -22,6 +23,8 @@ class IPTV
             // Cria o diretório recursivamente com permissão 0777 (para fins de desenvolvimento)
             @mkdir($this->diretorioCache, 0777, true);
         }
+
+        $this->modeloProgresso = new ModeloProgresso();
     }
 
     /* Faz uma requisição HTTP para a API e retorna o resultado em JSON.
@@ -189,12 +192,43 @@ class IPTV
         return $this->tratarLinksReproducao($response);
     }
 
+    public function obterEpisodiosSeries(string $stream_id): array
+    {
+        $caminhoJsonEpisodios = COMMON_PATH . '/content/series_episodios.json';
+        $episodios = carregarDadosJson($caminhoJsonEpisodios);
+
+        $buscarConteudoAPI = false;
+        if (empty($episodios) || $episodios[$stream_id] === null) {
+            $buscarConteudoAPI = true;
+        }
+
+        if ($buscarConteudoAPI) {
+            $response = $this->fazerRequisicaoAPI('get_series_info', ['series_id' => $stream_id]);
+
+            if (empty($response)) {
+                return [];
+            }
+
+            $response = $response['episodes'];
+
+            foreach ($response as $k => $temporada) {
+                $response[$k] = $this->tratarLinksReproducao($temporada);
+            }
+
+            $episodios[$stream_id] = $response;
+            salvarDadosJson($caminhoJsonEpisodios, $episodios);
+        }
+
+        return $episodios[$stream_id];
+    }
+
     private function tratarLinksReproducao(array $itens): array
     {
         foreach ($itens as &$item) {
             $item['title'] = $item['title'] ?? $item['name'];
-            $item['stream_id'] = $item['stream_id'] ?? $item['vod_id'] ?? $item['series_id'];
+            $item['stream_id'] = $item['stream_id'] ?? $item['vod_id'] ?? $item['series_id'] ?? $item['id'];
             $item['stream_icon'] = $item['stream_icon'] ?? $item['cover'];
+            $item['stream_type'] = $item['stream_type'] ?? 'series';
             $item['stream_link'] = $this->construirUrlReproducao($item['stream_id'], $item['stream_type']);
         }
 

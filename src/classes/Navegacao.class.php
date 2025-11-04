@@ -2,6 +2,15 @@
 
 class Navegacao
 {
+    private IPTV $iptv;
+    private ModeloProgresso $modeloProgresso;
+
+    public function __construct()
+    {
+        $this->iptv = new IPTV();
+        $this->modeloProgresso = new ModeloProgresso();
+    }
+
     /**
      * Rota: /(\w+) (ex: /filmes, /series)
      * Exibe uma categoria específica.
@@ -38,7 +47,7 @@ class Navegacao
         }
 
         // Carrega o conteúdo específico
-        $conteudo = $GLOBALS['IPTV']->obterPorTipo($arquivo);
+        $conteudo = $this->iptv->obterPorTipo($arquivo);
 
         // Define o número de canais por página
         $limitePorPagina = 10;
@@ -68,15 +77,31 @@ class Navegacao
 
     public function assistir($tipo, $id)
     {
-        $stream = $GLOBALS['IPTV']->obterDetalhes($tipo, $id);
+        $stream = $this->iptv->obterDetalhes($tipo, $id);
         $stream['tipo'] = $tipo;
-        $stream['ultimo_tempo_assistido'] = (new ModeloProgresso())->buscarProgressoPorId($_SESSION['perfil_id'], $stream['stream_id'])['ultimo_tempo_assistido'] ?? 0;
-        if ($tipo === 'tv') {
+
+        $episodios = [];
+        if ($tipo === SERIES_TIPO) {
+            // buscar episodios
+            $episodios = $this->iptv->obterEpisodiosSeries($id);
+            if (empty($episodios)) {
+                http_response_code(404);
+                view('erro/404', ['mensagem' => "Episódios não encontrados."]);
+                return;
+            }
+        }
+
+        $progresso = $this->modeloProgresso->buscarProgressoPorId($stream['stream_id']) ?: [];
+
+        if ($tipo === TV_TIPO) {
             $stream['stream_link'] = str_replace('.ts', '.m3u8', $stream['stream_link']);
         }
+
         view('assistir', [
             'stream' => $stream,
             'titulo' => $stream['title'],
+            'episodios' => $episodios,
+            'progresso' => $progresso
         ], ['player']);
     }
 }

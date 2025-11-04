@@ -3,10 +3,6 @@ RewriteEngine On
 # Desabilitar a listagem de diretórios
 Options -Indexes
 
-# Permitir acesso direto à pasta public/imagens
-RewriteCond %{REQUEST_URI} ^/public/imagens/ [NC]
-RewriteRule ^public/imagens/(.*)$ public/imagens/$1 [L]
-
 # Redirecionar todas as outras requisições para o index.php, exceto se for um arquivo ou diretório existente
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

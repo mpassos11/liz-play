@@ -32,6 +32,11 @@ class Usuarios
             'tipo' => $dados['tipo'],
         ];
 
+        if ($dados['ep_id']) {
+            $dadosParaSalvar['ep_id'] = $dados['ep_id'];
+            $dadosParaSalvar['tp_id'] = $dados['tp_id'];
+        }
+
         $modeloProgresso = new ModeloProgresso();
 
         // 3. Executa a lógica de salvamento no Model

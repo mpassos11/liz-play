@@ -51,12 +51,16 @@ class ModeloProgresso
 
     /**
      * Busca o progresso de um item de conteúdo específico.
-     * @param string $usuarioId ID do usuário.
      * @param string $contentId ID do conteúdo (filme, episódio, etc.).
      * @return array|null Dados de progresso, ou null se não houver registro.
      */
-    public function buscarProgressoPorId(string $usuarioId, string $contentId): ?array
+    public function buscarProgressoPorId(string $contentId): ?array
     {
+        $usuarioId = isset($_SESSION['perfil_id']) ? $_SESSION['perfil_id'] : null;
+        if (!$usuarioId) {
+            return null;
+        }
+
         $progressoGeral = $this->obterProgresso($usuarioId);
 
         if (empty($progressoGeral['progressos'])) {
