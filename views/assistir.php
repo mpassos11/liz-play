@@ -37,6 +37,13 @@
         Seu navegador não suporta a tag de vídeo.
     </video>
 
+    <div class="next-episode-prompt" id="nextEpisodePrompt">
+        <p>Assistindo a seguir: Episódio 2</p>
+        <button id="nextEpisodeBtn">
+            <i class="fas fa-forward"></i> Próximo Episódio
+        </button>
+    </div>
+
     <div class="video-header">
         <h3 id="videoTitle"><?= $stream['title'] ?></h3>
     </div>

@@ -117,6 +117,8 @@ $(document).ready(function () {
             .attr('src', episodio['stream_link'])
             .trigger('change');
 
+        $('#videoTitle').text(episodio['title']);
+
         $('#ep_id').val(idEpisodio);
         $('#tp_id').val(temporada);
 

@@ -10,6 +10,9 @@ const currentTimeEl = document.getElementById('currentTime');
 const durationTimeEl = document.getElementById('durationTime');
 const volumeIcon = document.getElementById('volumeIcon'); // Novo: Ícone de Volume
 const volumeSlider = document.getElementById('volumeSlider'); // Novo: Slider
+const nextEpisodePrompt = document.getElementById('nextEpisodePrompt');
+const nextEpisodeBtn = document.getElementById('nextEpisodeBtn');
+const END_THRESHOLD = 60; // Mostrar o prompt nos últimos 30 segundos do vídeo
 
 let controlsTimeout; // Variável para o timer de ocultar os controles
 
@@ -107,6 +110,16 @@ video.addEventListener('timeupdate', () => {
     const percentage = (video.currentTime / video.duration) * 100;
     progressBar.style.width = percentage + '%';
     currentTimeEl.textContent = formatTime(video.currentTime);
+
+    // NOVO: Lógica do Próximo Episódio
+    const timeLeft = video.duration - video.currentTime;
+
+    // Mostra o botão se o tempo restante for menor ou igual ao limite
+    if (timeLeft <= END_THRESHOLD && timeLeft > 0) {
+        nextEpisodePrompt.classList.add('show');
+    } else {
+        nextEpisodePrompt.classList.remove('show');
+    }
 });
 
 // Lógica de "seek" (arrastar/clicar na barra de progresso)
@@ -129,6 +142,15 @@ function toggleFullScreen() {
         document.exitFullscreen();
     }
 }
+
+nextEpisodeBtn.addEventListener('click', () => {
+    const proximo = encontrarProximoEpisodio();
+    if (proximo) {
+        reproduzirEpisodio(proximo.stream_id, proximo.season);
+    }
+
+    nextEpisodePrompt.classList.remove('show'); // Esconde o prompt
+});
 
 // --- Controles de Visibilidade na Inatividade (Estilo Netflix) ---
 container.addEventListener('mousemove', resetControlsTimeout);
