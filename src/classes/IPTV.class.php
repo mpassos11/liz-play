@@ -130,6 +130,14 @@ class IPTV
                     return [];
             }
 
+            if ($nomeCache !== 'categorias.json') {
+                $conteudo = array_filter($conteudo, function ($stream) {
+                    return stripos($stream['title'], 'xxx') === FALSE &&
+                        !in_array(24, $stream['category_ids'], true) &&
+                        !in_array(2403, $stream['category_ids'], true);
+                });
+            }
+
             // 3. Salvar o novo conteúdo da API no cache
             if (!empty($conteudo)) {
                 // A função salvarDadosJson está em FuncoesGerais.php
@@ -145,11 +153,6 @@ class IPTV
         // 1. FILTRAGEM E SELEÇÃO DA MELHOR QUALIDADE (FHD > HD)
         $preferredChannels = [];
         $qualityRank = ['FHD' => 3, 'HD' => 2, 'SD' => 1, '4K' => 0];
-
-        // tirar tudo com categoria 24
-        $canais = array_filter($canais, function ($canal) {
-            return !in_array(24, $canal['category_ids'], true);
-        });
 
         foreach ($canais as $channel) {
             $title = strtoupper($channel['title']);
@@ -383,7 +386,9 @@ class IPTV
             return [];
         }
 
-        return $response;
+        return array_filter($response, function ($cat) {
+            return $cat['category_id'] !== 24 && $cat['category_id'] !== 2403;
+        });
     }
 
     public function obterEpisodiosSeries(string $stream_id): array

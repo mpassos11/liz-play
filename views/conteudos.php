@@ -11,6 +11,17 @@ $tituloDisplay = $tituloPagina ?? 'Catálogo';
         </div>
     <?php else: ?>
 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group mb-3">
+                    <input type="text" id="input_pesquisa" class="form-control" placeholder="Pesquisar..." aria-label="Pesquisar..." aria-describedby="pesquisar">
+                    <button class="btn btn-outline-secondary" type="button" id="pesquisar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <div class="row" id="conteudo">
             <?php
             $html = [];
@@ -28,3 +39,6 @@ $tituloDisplay = $tituloPagina ?? 'Catálogo';
         </div>
     <?php endif; ?>
 </div>
+<script>
+    const tipo = '<?= $tipo ?>';
+</script>

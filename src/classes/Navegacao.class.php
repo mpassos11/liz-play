@@ -48,43 +48,7 @@ class Navegacao
 
         // Carrega o conteúdo específico
         $conteudo = $this->iptv->obterPorTipo($arquivo);
-        // Define o número de canais por página
-        $limitePorPagina = 10;
-
-        // Pega o número da página da URL (padrão 1)
-        $paginaAtual = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
-        $offset = ($paginaAtual - 1) * $limitePorPagina;
-
-        if ($tipoConteudo === TV_TIPO) {
-            $conteudoAExibir = $this->iptv->ordenarCanaisTV($conteudo);
-        } else {
-            $conteudoAExibir = [];
-            $categorias = $this->iptv->obterPorTipo('categorias.json');
-            // ordenar o array aleatoriamente
-            shuffle($conteudo);
-            foreach ($conteudo as $item) {
-                $categoria = array_search($item['category_id'], array_column($categorias, 'category_id'), true);
-                $conteudoAExibir[$categorias[$categoria]['category_name']][] = $item;
-            }
-
-            foreach ($conteudoAExibir as $categoria => $itens) {
-                // pegar 10 conteudos randomicos de cada categoria
-                $min = 10;
-                $total = count($itens);
-                if ($min > $total) {
-                    $min = $total;
-                }
-
-                $random = array_rand($itens, $min);
-                if (is_array($random)) {
-                    $novosItens = [];
-                    foreach ($random as $r) {
-                        $novosItens[] = $itens[$r];
-                    }
-                    $conteudoAExibir[$categoria] = $novosItens;
-                }
-            }
-        }
+        $conteudoAExibir = $this->transformarConteudo($tipoConteudo, $conteudo);
 
         $dados = [
             'titulo' => ucwords($tipoConteudo),
@@ -96,6 +60,42 @@ class Navegacao
 
         // Renderiza uma view genérica de categoria ou a view home/index com a tab ativa
         view('conteudos', $dados);
+    }
+
+    private function transformarConteudo(string $tipoConteudo, array $conteudo): array
+    {
+        if ($tipoConteudo === TV_TIPO) {
+            return $this->iptv->ordenarCanaisTV($conteudo);
+        }
+
+        $conteudoAExibir = [];
+        $categorias = $this->iptv->obterPorTipo('categorias.json');
+        // ordenar o array aleatoriamente
+        shuffle($conteudo);
+        foreach ($conteudo as $item) {
+            $categoria = array_search($item['category_id'], array_column($categorias, 'category_id'), true);
+            $conteudoAExibir[$categorias[$categoria]['category_name']][] = $item;
+        }
+
+        foreach ($conteudoAExibir as $categoria => $itens) {
+            // pegar 10 conteudos randomicos de cada categoria
+            $min = 10;
+            $total = count($itens);
+            if ($min > $total) {
+                $min = $total;
+            }
+
+            $random = array_rand($itens, $min);
+            if (is_array($random)) {
+                $novosItens = [];
+                foreach ($random as $r) {
+                    $novosItens[] = $itens[$r];
+                }
+                $conteudoAExibir[$categoria] = $novosItens;
+            }
+        }
+
+        return $conteudoAExibir;
     }
 
     public function assistir($tipo, $id)
@@ -124,7 +124,8 @@ class Navegacao
             'stream' => $stream,
             'titulo' => $stream['title'],
             'episodios' => $episodios,
-            'progresso' => $progresso
+            'progresso' => $progresso,
+            'tipoConteudo' => $tipo,
         ], ['reprodutor', 'player'], ['player']);
     }
 
@@ -132,13 +133,14 @@ class Navegacao
     {
         $html = '';
         if (empty($item['title']) && is_array($item)) {
-            $html .= "<div class='col-md-12'><h4>". ucfirst($categoria) ."</h4><div class='slick-carousel row'>";
+            $html .= "<div class='col-md-12'><h4>" . ucfirst($categoria) . "</h4><div class='slick-carousel row'>";
             foreach ($item as $value) {
                 $html .= self::renderizarConteudo($categoria, $value);
             }
             $html .= "</div></div>";
         } else {
             $item['tipo'] = $item['tipo'] ?? $item['stream_type'] ?? 'tv';
+            $item['tipo'] = $item['tipo'] === 'movie' ? 'filmes' : $item['tipo'];
             $html = '<div class="col">
                     <div class="card bg-dark text-white h-100 shadow-sm border-0">
 
@@ -162,5 +164,29 @@ class Navegacao
         }
 
         return $html;
+    }
+
+    public function pesquisar()
+    {
+        $pesquisa = $_POST['texto'] ?? '';
+        $tipo = $_POST['tipo'] ?? '';
+
+        if (empty($pesquisa) || empty($tipo)) {
+            echo '';
+            exit;
+        }
+
+        $conteudos = $this->iptv->obterPorTipo("{$tipo}.json");
+        $conteudos = array_filter($conteudos, function ($conteudo) use ($pesquisa) {
+            return stripos($conteudo['title'], $pesquisa) !== FALSE;
+        });
+
+        $conteudos = $this->transformarConteudo($tipo, $conteudos);
+        $html = '';
+        foreach ($conteudos as $categoria => $conteudo) {
+            $html .= self::renderizarConteudo($categoria, $conteudo);
+        }
+
+        echo $html;
     }
 }

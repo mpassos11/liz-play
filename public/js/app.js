@@ -2,25 +2,28 @@ $(document).ready(function () {
     definirCarousel();
     definirLazyLoad();
 
-    if (typeof CONTINUACAO_HTML != 'undefined' && CONTINUACAO_HTML) {
-        // quando chegar no final da página, carregar mais um indice do continuacao_html
-        setTimeout(function () {
-            $(window).scroll(function () {
-                if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
-                    // pega o primeiro indice do array
-                    let append = CONTINUACAO_HTML.shift();
-                    $('#conteudo').append(append);
-                    definirCarousel();
-                    definirLazyLoad();
-                }
-            });
-        }, 2500);
-    }
-});
+    var ajax = null;
+    $('#input_pesquisa').on('input', function () {
+        const texto = $(this).val().trim();
+        if (ajax && ajax.hasOwnProperty('abort')) {
+            ajax.abort();
+        }
 
-// Obtenha o input e os elementos de item
-const searchInput = document.getElementById('searchInput');
-var items = document.querySelectorAll('.items');
+        ajax = $.ajax({
+            url: COMMON_URL + 'pesquisar',
+            method: 'POST',
+            data: {
+                texto,
+                tipo,
+            },
+            success: function (response) {
+                $('#conteudo').html(response);
+                definirCarousel();
+                definirLazyLoad();
+            }
+        });
+    });
+});
 
 // Função para remover acentuacões
 function removeAccentuation(text) {
@@ -67,32 +70,6 @@ function definirCarousel() {
 			}
 		]
 	});
-}
-
-if (searchInput) {
-	// Função de filtro para esconder/exibir os itens
-	searchInput.addEventListener('input', () => {
-		const filter = removeAccentuation(searchInput.value.toLowerCase());
-		
-		items.forEach(item => {
-			const text = removeAccentuation(item.textContent.toLowerCase());
-			
-			// Verifica se o texto do item inclui o texto do filtro
-			if (text.includes(filter)) {
-				item.parentElement.classList.remove('d-none');
-			} else {
-				item.parentElement.classList.add('d-none');
-			}
-		});
-	});
-}
-
-function showLoading() {
-	$('#loading').show();
-}
-
-function hideLoading() {
-	$('#loading').hide();
 }
 
 // Identificar se está em uma TV pelo userAgent
