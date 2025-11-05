@@ -26,9 +26,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('conteudos/tv') ?>">Ao Vivo</a>
                     </li>
-					<li class="nav-item">
-						<a class="nav-link" href="<?= base_url('pesquisa') ?>">Pesquisar</a>
-					</li>
 				</ul>
 				<div class="d-flex">
 					<a class="btn btn-default" href="<?= base_url('configuracao') ?>">

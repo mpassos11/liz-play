@@ -1,4 +1,3 @@
-<h1 class="mb-4 text-light"><?= $stream['title'] ?></h1>
 <?php if ($stream['tipo'] === SERIES_TIPO): ?>
     <input type="hidden" name="ep_id" id="ep_id">
     <input type="hidden" name="tp_id" id="tp_id">

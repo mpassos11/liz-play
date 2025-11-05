@@ -1,13 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+    /* Isso é importante para que 100vh funcione como o tamanho total da tela */
+}
+
 .video-container {
-    position: relative;
-    width: 80%;
-    max-width: 1000px;
+    width: 100%;
+    max-width: 100%; /* Garante que ocupa a largura total */
     background-color: #000;
+    height: calc(100vh - 56px - 20px);
 }
 
 .video-container video {
     display: block;
     width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .video-controls, .video-header {
@@ -30,7 +38,7 @@
 
 /* TÍTULO NO TOPO */
 .video-header {
-    top: 0;
+    top: 70px;
     left: 0;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
     text-align: left;
