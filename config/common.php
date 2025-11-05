@@ -149,7 +149,7 @@ function view($view, $data = [], $js = [], $css = [])
         'bootstrap',
         'fontawesome.min',
         'jquery-3.6.0.min',
-        'lazyload.min',
+        'jquery.lazy.min',
         'slick',
         'app',
     ], $js);

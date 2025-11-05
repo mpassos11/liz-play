@@ -59,6 +59,12 @@
                     <i id="playPauseIcon" class="fas fa-play"></i>
                 </button>
 
+                <?php if ($stream['tipo'] === TV_TIPO): ?>
+                    <button id="channelsBtn" onclick="openChannelsModal()">
+                        <i class="fas fa-list-ul"></i>
+                    </button>
+                <?php endif; ?>
+
                 <button id="muteBtn" onclick="toggleMute()">
                     <i id="volumeIcon" class="fas fa-volume-up"></i>
                 </button>
@@ -74,6 +80,19 @@
                 <button onclick="toggleFullScreen()">
                     <i class="fas fa-expand"></i>
                 </button>
+            </div>
+
+            <div class="channel-modal" id="channelsModal">
+                <div class="modal-content">
+                    <button class="modal-close" onclick="closeChannelsModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <h2 class="modal-title">Canais ao Vivo</h2>
+
+                    <div class="channel-list-content" id="channelListContent">
+                        <p>Carregando lista de canais...</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

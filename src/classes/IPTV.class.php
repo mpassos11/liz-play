@@ -122,6 +122,9 @@ class IPTV
                 case 'tv.json':
                     $conteudo = $this->obterCanaisAoVivo();
                     break;
+                case 'categorias.json':
+                    $conteudo = $this->obterCategorias();
+                    break;
                 default:
                     // Se for um tipo desconhecido, retorna vazio
                     return [];
@@ -369,6 +372,18 @@ class IPTV
         }
 
         return $this->tratarLinksReproducao($response);
+    }
+
+    public function obterCategorias(): array
+    {
+        $response = $this->fazerRequisicaoAPI('get_series_categories');
+        $response = array_merge($response, $this->fazerRequisicaoAPI('get_vod_categories'));
+
+        if (empty($response)) {
+            return [];
+        }
+
+        return $response;
     }
 
     public function obterEpisodiosSeries(string $stream_id): array

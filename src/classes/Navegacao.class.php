@@ -48,7 +48,6 @@ class Navegacao
 
         // Carrega o conteúdo específico
         $conteudo = $this->iptv->obterPorTipo($arquivo);
-
         // Define o número de canais por página
         $limitePorPagina = 10;
 
@@ -59,12 +58,32 @@ class Navegacao
         if ($tipoConteudo === TV_TIPO) {
             $conteudoAExibir = $this->iptv->ordenarCanaisTV($conteudo);
         } else {
-            // 2. Calcula o total de páginas
-            $totalConteudo = count($conteudo);
-            $totalPaginas = ceil($totalConteudo / $limitePorPagina);
+            $conteudoAExibir = [];
+            $categorias = $this->iptv->obterPorTipo('categorias.json');
+            // ordenar o array aleatoriamente
+            shuffle($conteudo);
+            foreach ($conteudo as $item) {
+                $categoria = array_search($item['category_id'], array_column($categorias, 'category_id'), true);
+                $conteudoAExibir[$categorias[$categoria]['category_name']][] = $item;
+            }
 
-            // 3. Aplica a paginação (limita o array)
-            $conteudoAExibir = array_slice($conteudo, $offset, $limitePorPagina);
+            foreach ($conteudoAExibir as $categoria => $itens) {
+                // pegar 10 conteudos randomicos de cada categoria
+                $min = 10;
+                $total = count($itens);
+                if ($min > $total) {
+                    $min = $total;
+                }
+
+                $random = array_rand($itens, $min);
+                if (is_array($random)) {
+                    $novosItens = [];
+                    foreach ($random as $r) {
+                        $novosItens[] = $itens[$r];
+                    }
+                    $conteudoAExibir[$categoria] = $novosItens;
+                }
+            }
         }
 
         $dados = [
@@ -95,7 +114,7 @@ class Navegacao
             }
         }
 
-        $progresso = $this->modeloProgresso->buscarProgressoPorId($stream['stream_id']) ?: [];
+        $progresso = $this->modeloProgresso->buscarProgressoPorId($id) ?: [];
 
         if ($tipo === TV_TIPO) {
             $stream['stream_link'] = str_replace('.ts', '.m3u8', $stream['stream_link']);
@@ -119,12 +138,14 @@ class Navegacao
             }
             $html .= "</div></div>";
         } else {
+            $item['tipo'] = $item['tipo'] ?? $item['stream_type'] ?? 'tv';
             $html = '<div class="col">
                     <div class="card bg-dark text-white h-100 shadow-sm border-0">
 
-                        <img src="' . $item['stream_icon'] . '"
-                             class="card-img-top"
-                             style="object-fit: cover; height: 250px; padding: 20px">
+                        <img data-lazy="' . $item['stream_icon'] . '"
+                             class="card-img-top lazy"
+                             style="object-fit: cover; height: 250px; padding: 20px"
+                             loading="lazy">
 
                         <div class="card-body p-3">
                             <h6 class="card-title text-truncate"

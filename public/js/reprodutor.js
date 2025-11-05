@@ -1,5 +1,5 @@
 // -------------------------------------
-// JAVASCRIPT / LÓGICA DO PLAYER
+// JAVASCRIPT / LÃ“GICA DO PLAYER
 // -------------------------------------
 const video = document.getElementById('video');
 const container = document.getElementById('videoContainer');
@@ -8,17 +8,19 @@ const progressBar = document.getElementById('progressBar');
 const progressBarContainer = document.getElementById('progressBarContainer');
 const currentTimeEl = document.getElementById('currentTime');
 const durationTimeEl = document.getElementById('durationTime');
-const volumeIcon = document.getElementById('volumeIcon'); // Novo: Ícone de Volume
+const volumeIcon = document.getElementById('volumeIcon'); // Novo: Ãcone de Volume
 const volumeSlider = document.getElementById('volumeSlider'); // Novo: Slider
 const nextEpisodePrompt = document.getElementById('nextEpisodePrompt');
 const nextEpisodeBtn = document.getElementById('nextEpisodeBtn');
-const END_THRESHOLD = 60; // Mostrar o prompt nos últimos 30 segundos do vídeo
+const END_THRESHOLD = 60; // Mostrar o prompt nos Ãºltimos 30 segundos do vÃ­deo
+const channelsModal = document.getElementById('channelsModal');
+const channelListContent = document.getElementById('channelListContent');
 
-let controlsTimeout; // Variável para o timer de ocultar os controles
+let controlsTimeout; // VariÃ¡vel para o timer de ocultar os controles
 
-// --- Funções de Ajuda ---
+// --- FunÃ§Ãµes de Ajuda ---
 
-// Função para formatar o tempo (segundos para MM:SS)
+// FunÃ§Ã£o para formatar o tempo (segundos para MM:SS)
 function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
@@ -26,12 +28,79 @@ function formatTime(seconds) {
     return `${minutes}:${paddedSeconds}`;
 }
 
-// Função para reiniciar o timer de ocultar controles
+// FunÃ§Ã£o para abrir o modal e carregar a lista
+function openChannelsModal() {
+    // 1. Pausa o vÃ­deo para nÃ£o atrapalhar a escolha
+    video.pause();
+
+    // 2. Exibe o modal
+    channelsModal.classList.add('show-modal');
+
+    // 3. Carrega a lista de canais
+    loadChannelList();
+}
+
+// FunÃ§Ã£o para fechar o modal
+function closeChannelsModal() {
+    channelsModal.classList.remove('show-modal');
+}
+
+// FunÃ§Ã£o para carregar a lista de canais via AJAX (Fetch)
+function loadChannelList() {
+    // Evita carregar novamente se o conteÃºdo jÃ¡ estiver lÃ¡ (simples cache)
+    if (channelListContent.innerHTML.trim() !== 'Carregando lista de canais...') {
+        return;
+    }
+
+    fetch(COMMON_URL + 'conteudos/tv')
+        .then(response => {
+            // Verifica se a resposta foi bem-sucedida
+            if (!response.ok) {
+                throw new Error('Erro ao carregar a lista de canais: ' + response.statusText);
+            }
+            return response.text(); // Assume que o PHP retorna HTML renderizado
+        })
+        .then(htmlContent => {
+            // Insere o HTML de lista de canais retornado pelo PHP
+            channelListContent.innerHTML = htmlContent;
+
+            // Opcional: Adicionar listeners para os novos links
+            addChannelClickListeners();
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            channelListContent.innerHTML = '<p style="color: red;">NÃ£o foi possÃ­vel carregar os canais. Tente novamente.</p>';
+        });
+}
+
+// Opcional: FunÃ§Ã£o para configurar a aÃ§Ã£o de troca de canal
+function addChannelClickListeners() {
+    // Supondo que o PHP retorna links com a classe 'channel-link' e o atributo 'data-stream-id'
+    const channelLinks = channelListContent.querySelectorAll('.channel-link');
+
+    channelLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const newStreamUrl = link.href; // Assumindo que o link Ã© a URL do stream
+            window.location.href = newStreamUrl;
+            closeChannelsModal();
+        });
+    });
+}
+
+// Evento para fechar o modal ao pressionar ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeChannelsModal();
+    }
+});
+
+// FunÃ§Ã£o para reiniciar o timer de ocultar controles
 function resetControlsTimeout() {
     clearTimeout(controlsTimeout);
     container.classList.add('controls-visible');
 
-    // Define um novo timer para ocultar os controles após 3 segundos
+    // Define um novo timer para ocultar os controles apÃ³s 3 segundos
     controlsTimeout = setTimeout(() => {
         if (!video.paused) {
             container.classList.remove('controls-visible');
@@ -39,7 +108,7 @@ function resetControlsTimeout() {
     }, 3000);
 }
 
-// --- Lógica Principal do Player ---
+// --- LÃ³gica Principal do Player ---
 
 function togglePlayPause() {
     if (video.paused || video.ended) {
@@ -47,39 +116,39 @@ function togglePlayPause() {
     } else {
         video.pause();
     }
-    resetControlsTimeout(); // Mantém os controles visíveis após a interação
+    resetControlsTimeout(); // MantÃ©m os controles visÃ­veis apÃ³s a interaÃ§Ã£o
 }
 
-// Atualiza o ícone do botão quando o estado do vídeo muda
-// Atualiza o ícone do botão (Font Awesome) quando o estado do vídeo muda
+// Atualiza o Ã­cone do botÃ£o quando o estado do vÃ­deo muda
+// Atualiza o Ã­cone do botÃ£o (Font Awesome) quando o estado do vÃ­deo muda
 video.addEventListener('play', () => {
-    // Troca para o ícone de Pause
+    // Troca para o Ã­cone de Pause
     playPauseIcon.classList.remove('fa-play');
     playPauseIcon.classList.add('fa-pause');
     resetControlsTimeout();
 });
 
 video.addEventListener('pause', () => {
-    // Troca para o ícone de Play
+    // Troca para o Ã­cone de Play
     playPauseIcon.classList.remove('fa-pause');
     playPauseIcon.classList.add('fa-play');
     clearTimeout(controlsTimeout);
     container.classList.add('controls-visible');
 });
 
-// Lógica de Mute/Unmute
+// LÃ³gica de Mute/Unmute
 function toggleMute() {
     video.muted = !video.muted; // Alterna o estado mute
     updateVolumeIcon();
-    // Se desmutar, ajusta o slider para o último volume conhecido
+    // Se desmutar, ajusta o slider para o Ãºltimo volume conhecido
     if (!video.muted && video.volume === 0) {
-        video.volume = 0.5; // Valor padrão se estava em 0 e desmutou
+        video.volume = 0.5; // Valor padrÃ£o se estava em 0 e desmutou
         volumeSlider.value = 0.5;
     }
     resetControlsTimeout();
 }
 
-// Lógica para sincronizar o slider com o volume do vídeo
+// LÃ³gica para sincronizar o slider com o volume do vÃ­deo
 volumeSlider.addEventListener('input', () => {
     video.volume = volumeSlider.value;
     video.muted = video.volume === 0; // Se o slider for zero, silencia
@@ -87,7 +156,7 @@ volumeSlider.addEventListener('input', () => {
     resetControlsTimeout();
 });
 
-// Atualiza o ícone de volume (Font Awesome)
+// Atualiza o Ã­cone de volume (Font Awesome)
 function updateVolumeIcon() {
     volumeIcon.classList.remove('fa-volume-up', 'fa-volume-down', 'fa-volume-mute');
 
@@ -100,21 +169,21 @@ function updateVolumeIcon() {
     }
 }
 
-// Evento de "metadata" para carregar a duração inicial
+// Evento de "metadata" para carregar a duraÃ§Ã£o inicial
 video.addEventListener('loadedmetadata', () => {
     durationTimeEl.textContent = formatTime(video.duration);
 });
 
-// Evento de atualização de tempo para a barra de progresso
+// Evento de atualizaÃ§Ã£o de tempo para a barra de progresso
 video.addEventListener('timeupdate', () => {
     const percentage = (video.currentTime / video.duration) * 100;
     progressBar.style.width = percentage + '%';
     currentTimeEl.textContent = formatTime(video.currentTime);
 
-    // NOVO: Lógica do Próximo Episódio
+    // NOVO: LÃ³gica do PrÃ³ximo EpisÃ³dio
     const timeLeft = video.duration - video.currentTime;
 
-    // Mostra o botão se o tempo restante for menor ou igual ao limite
+    // Mostra o botÃ£o se o tempo restante for menor ou igual ao limite
     if (timeLeft <= END_THRESHOLD && timeLeft > 0) {
         nextEpisodePrompt.classList.add('show');
     } else {
@@ -122,9 +191,9 @@ video.addEventListener('timeupdate', () => {
     }
 });
 
-// Lógica de "seek" (arrastar/clicar na barra de progresso)
+// LÃ³gica de "seek" (arrastar/clicar na barra de progresso)
 progressBarContainer.addEventListener('click', (e) => {
-    const clickPosition = e.offsetX; // Posição do clique em pixels
+    const clickPosition = e.offsetX; // PosiÃ§Ã£o do clique em pixels
     const totalWidth = progressBarContainer.clientWidth; // Largura total da barra
     const clickPercentage = clickPosition / totalWidth;
 
@@ -155,9 +224,9 @@ nextEpisodeBtn.addEventListener('click', () => {
 // --- Controles de Visibilidade na Inatividade (Estilo Netflix) ---
 container.addEventListener('mousemove', resetControlsTimeout);
 
-// Inicialização:
+// InicializaÃ§Ã£o:
 container.classList.add('controls-visible');
 
-// Garante que o slider comece sincronizado com o volume (útil se o HTML tiver valor diferente de 1)
+// Garante que o slider comece sincronizado com o volume (Ãºtil se o HTML tiver valor diferente de 1)
 volumeSlider.value = video.volume;
-updateVolumeIcon(); // Define o ícone de volume inicial
+updateVolumeIcon(); // Define o Ã­cone de volume inicial

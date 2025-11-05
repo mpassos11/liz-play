@@ -11,30 +11,20 @@ $tituloDisplay = $tituloPagina ?? 'Catálogo';
         </div>
     <?php else: ?>
 
-        <div class="row">
+        <div class="row" id="conteudo">
+            <?php
+            $html = [];
+            foreach ($conteudo as $categoria => $item) {
+                $append = Navegacao::renderizarConteudo($categoria, $item);
+                if (is_string($categoria)) {
+                    $append .= "<hr style='margin-bottom: 2rem'>";
+                }
 
-            <?php foreach ($conteudo as $categoria => $item): ?>
-                <?php echo Navegacao::renderizarConteudo($categoria, $item); ?>
-            <?php endforeach; ?>
+                $html[] = $append;
+            }
 
+            echo implode('', $html);
+            ?>
         </div>
-
-        <!-- paginação -->
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="<?= $paginaAtual > 1 ? "?p=" . ($paginaAtual - 1) : '#' ?>" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="<?= $paginaAtual < $totalPaginas ? "?p=" . ($paginaAtual + 1) : '#' ?>" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-
     <?php endif; ?>
 </div>
