@@ -1,12 +1,18 @@
 $(document).ready(function () {
+    hideWindowLoading();
     definirCarousel();
     definirLazyLoad();
+    definirLoading();
 
     var ajax = null;
     $('#input_pesquisa').on('input', function () {
         const texto = $(this).val().trim();
         if (ajax && ajax.hasOwnProperty('abort')) {
             ajax.abort();
+        }
+
+        if (texto.length > 3) {
+            $('#conteudo').html('');
         }
 
         ajax = $.ajax({
@@ -24,6 +30,53 @@ $(document).ready(function () {
         });
     });
 });
+
+function showWindowLoading() {
+    if ($('#loading-overlay').length === 0) {
+        // Recria a estrutura se ela foi removida pelo carregamento inicial
+        $('body').prepend(`
+                <div id="loading-overlay">
+                    <div id="loading-spinner"></div>
+                </div>
+            `);
+    }
+
+    $('#loading-overlay').removeClass('loaded');
+}
+
+function hideWindowLoading() {
+    const $overlay = $('#loading-overlay');
+
+    // Inicia o fade-out
+    $overlay.addClass('loaded');
+
+    // Remove o elemento após a transição
+    setTimeout(function() {
+        $overlay.remove();
+    }, 300);
+}
+
+let activeRequests = 0;
+function definirLoading() {
+    $(document).ajaxStart(function() {
+        // Se for a primeira requisição ativa, mostra o overlay
+        if (activeRequests === 0) {
+            showWindowLoading();
+        }
+
+        activeRequests++;
+    });
+
+    $(document).ajaxStop(function() {
+        // Decrementa o contador de requisições ativas
+        activeRequests--;
+
+        // Só esconde se NÃO houver outras requisições pendentes
+        if (activeRequests === 0) {
+            hideWindowLoading();
+        }
+    });
+}
 
 // Função para remover acentuacões
 function removeAccentuation(text) {

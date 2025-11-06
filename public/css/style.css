@@ -10,16 +10,50 @@
 	outline: 2px solid green !important;
 }
 
-#loading {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 1000;
-	background-color: rgba(255, 255, 255, 0.7); /* Fundo levemente transparente */
-	padding: 20px;
-	border-radius: 10px;
-	text-align: center;
+/* ARQUIVO: /css/style.css */
+
+/* 1. O Overlay que cobre a tela toda */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Cor Dark Mode do seu fundo */
+    background-color: #1a1a1a;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Garante que fique acima de todos os outros elementos */
+    z-index: 9999;
+
+    /* Para o efeito de fade-out suave */
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+}
+
+/* 2. O Spinner Circular */
+#loading-spinner {
+    border: 4px solid #f3f3f3; /* Cor de fundo do aro */
+    border-top: 4px solid #CC0000; /* Vermelho do seu tema */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+/* 3. A animação de rotação */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 4. Classe para remover o overlay (usada pelo jQuery) */
+.loaded {
+    opacity: 0 !important;
+    visibility: hidden; /* Garante que não seja clicável após o fade */
 }
 
 .img-thumbnail {

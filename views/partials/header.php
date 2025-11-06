@@ -4,13 +4,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#dc3545">
-	<title><?= $titulo ?: 'IPTV' ?></title>
+	<title><?= $titulo ? $titulo . ' - Liz Play' : 'Liz Play' ?></title>
 	<?php foreach ($css as $file) : ?>
 		<link rel="stylesheet" href="<?= base_url("public/css/$file.css?v=" . time()) ?>">
 	<?php endforeach ?>
 </head>
 <body>
-	<div id="loading" style="display: none;"><img src="<?= base_url('imagens/loading.gif') ?>" alt="Loading..." /></div>
+    <div id="loading-overlay" class="loaded">
+        <div id="loading-spinner"></div>
+    </div>
 	<nav id="navbar" class="navbar navbar-expand-lg bg-body-tertiary" style="margin-bottom: 1%">
 		<div class="container">
 			<a class="navbar-brand" href="<?= base_url('') ?>">Liz Play</a>
