@@ -50,6 +50,16 @@ class Navegacao
         $conteudo = $this->iptv->obterPorTipo($arquivo);
         $conteudoAExibir = $this->transformarConteudo($tipoConteudo, $conteudo);
 
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' && getallheaders()['Source'] === 'ajax') {
+            $html = '';
+            foreach ($conteudoAExibir as $categoria => $itens) {
+                $html .= self::renderizarConteudo($categoria, $itens);
+            }
+
+            echo $html;
+            return;
+        }
+
         $dados = [
             'titulo' => ucwords($tipoConteudo),
             'conteudo' => $conteudoAExibir,
@@ -139,9 +149,20 @@ class Navegacao
             }
             $html .= "</div></div>";
         } else {
-            $item['tipo'] = $item['tipo'] ?? $item['stream_type'] ?? 'tv';
-            $item['tipo'] = $item['tipo'] === 'movie' ? 'filmes' : $item['tipo'];
-            $html = '<div class="col">
+            $item['tipo'] = $item['tipo'] ?? $item['stream_type'];
+            switch ($item['tipo']) {
+                case 'movie':
+                    $item['tipo'] = 'filmes';
+                    break;
+                case 'live':
+                    $item['tipo'] = 'tv';
+                    break;
+                default:
+                    $item['tipo'] = 'series';
+                    break;
+            }
+
+            $html = '<div class="col" style="max-width: 200px;">
                     <div class="card bg-dark text-white h-100 shadow-sm border-0">
 
                         <img data-lazy="' . $item['stream_icon'] . '"
@@ -185,8 +206,33 @@ class Navegacao
         $html = '';
         foreach ($conteudos as $categoria => $conteudo) {
             $html .= self::renderizarConteudo($categoria, $conteudo);
+            $html .= "<hr style='margin-bottom: 2rem'>";
         }
 
         echo $html;
+    }
+
+    public function episodiosSeries($serieID)
+    {
+        $episodios = $this->iptv->obterEpisodiosSeries($serieID);
+        if (empty($episodios)) {
+            http_response_code(404);
+            exit;
+        }
+
+        $retorno = ['seasons' => []];
+        foreach ($episodios as $temporada => $eps) {
+            if (empty($retorno['seasons'][$temporada])) {
+                $retorno['seasons'][$temporada] = [
+                    'id' => $temporada,
+                    'name' => "Temporada {$temporada}",
+                    'episodes' => []
+                ];
+            }
+
+            $retorno['seasons'][$temporada]['episodes'] = $eps;
+        }
+
+        echo json_encode($retorno);
     }
 }

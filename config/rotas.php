@@ -15,6 +15,7 @@ $rota->rota('/salvar-progresso', 'Usuarios::salvarProgresso');
 $rota->rota('/pesquisa', 'Navegacao::pesquisa');
 $rota->rota('/assistir/{tipo}/{id}', 'Navegacao::assistir');
 $rota->rota('/pesquisar', 'Navegacao::pesquisar');
+$rota->rota('/episodios/series/{id}', 'Navegacao::episodiosSeries');
 
 $rota->rota('/404', function () {
 	echo 'Rota não encontrada';

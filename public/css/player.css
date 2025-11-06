@@ -182,6 +182,7 @@ body {
 
 .channel-modal.show-modal {
     display: flex;
+    position: fixed;
 }
 
 .modal-content {
@@ -242,4 +243,99 @@ body {
 .channel-list-content a:hover {
     background-color: #2a2a2a;
     color: #fff;
+}
+
+/* ------------------------------------- */
+/* NOVO CSS: MODAL DE EPISÓDIOS */
+/* ------------------------------------- */
+
+.episodes-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none; /* Inicia oculto */
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+.episodes-modal.show-modal {
+    display: flex;
+    position: fixed;
+}
+
+.episodes-modal .modal-content {
+    background-color: #1a1a1a;
+    width: 90%;
+    max-width: 800px;
+    height: 90%;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para o seletor de temporadas */
+.season-selector {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 15px;
+}
+
+#seasonSelect {
+    padding: 8px 15px;
+    border-radius: 4px;
+    background-color: #2a2a2a;
+    color: #fff;
+    border: 1px solid #444;
+    font-size: 1.1em;
+    cursor: pointer;
+    appearance: none; /* Remove estilo nativo */
+}
+
+/* Estilo para a lista de episódios */
+.episode-list-content {
+    overflow-y: auto;
+    flex-grow: 1;
+    color: #ccc;
+}
+
+.episode-item {
+    display: flex;
+    padding: 15px 0;
+    border-bottom: 1px solid #222;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.episode-item:hover {
+    background-color: #2a2a2a;
+}
+
+.episode-thumbnail {
+    width: 150px;
+    height: 84px; /* 16:9 ratio */
+    background-color: #333;
+    margin-right: 15px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.episode-details h4 {
+    margin: 0 0 5px 0;
+    color: #fff;
+}
+
+.episode-details p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #999;
+    line-height: 1.3;
 }

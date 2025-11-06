@@ -67,6 +67,8 @@ class ModeloProgresso
             return null;
         }
 
+        $progressoGeral['progressos'] = array_reverse($progressoGeral['progressos']);
+
         foreach ($progressoGeral['progressos'] as $item) {
             if ($item['content_id'] === $contentId) {
                 return $item;

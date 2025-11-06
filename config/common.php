@@ -178,7 +178,7 @@ function get_post($name)
     return $_POST[$name] ?? '';
 }
 
-function base_url($url)
+function base_url($url = '')
 {
     return COMMON_URL . $url;
 }

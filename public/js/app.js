@@ -49,6 +49,7 @@ function definirCarousel() {
 		slidesToScroll: 1,   // Quantidade de cards rolados a cada clique
 		arrows: true,        // Mostra setas de navegação
         variableWidth: true,
+        lazyLoad: 'ondemand',
 		responsive: [        // Ajuste de responsividade
 			{
 				breakpoint: 1024,
