@@ -113,10 +113,19 @@ const VideoPlayer = {
     toggleFullScreen() {
         if (!document.fullscreenElement) {
             VideoPlayer.$container[0].requestFullscreen().catch(err => {
-                alert(`Erro ao tentar modo tela cheia: ${err.message}`);
+                this.toggleSimulatedFullscreen();
             });
         } else {
             document.exitFullscreen();
+        }
+    },
+
+    toggleSimulatedFullscreen() {
+        VideoPlayer.$container.toggleClass('fullscreen-simulado');
+
+        // Opcional: Rolar para o topo da página para dar a sensação completa
+        if (VideoPlayer.$container.hasClass('fullscreen-simulado')) {
+            $('body, html').scrollTop(0);
         }
     },
 
