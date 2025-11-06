@@ -58,24 +58,7 @@ function hideWindowLoading() {
 
 let activeRequests = 0;
 function definirLoading() {
-    $(document).ajaxStart(function() {
-        // Se for a primeira requisição ativa, mostra o overlay
-        if (activeRequests === 0) {
-            showWindowLoading();
-        }
 
-        activeRequests++;
-    });
-
-    $(document).ajaxStop(function() {
-        // Decrementa o contador de requisições ativas
-        activeRequests--;
-
-        // Só esconde se NÃO houver outras requisições pendentes
-        if (activeRequests === 0) {
-            hideWindowLoading();
-        }
-    });
 }
 
 // Função para remover acentuacões
