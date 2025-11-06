@@ -55,3 +55,17 @@
 <?php foreach ($js as $file) : ?>
 	<script src="<?= base_url("public/js/$file.js?v=" . time()) ?>"> type="text/javascript"></script>
 <?php endforeach ?>
+
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('<?= base_url('sw.js') ?>')
+                .then(registration => {
+                    console.log('ServiceWorker registered: ', registration);
+                })
+                .catch(registrationError => {
+                    console.log('ServiceWorker registration failed: ', registrationError);
+                });
+        });
+    }
+</script>

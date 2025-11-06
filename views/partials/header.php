@@ -2,6 +2,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#dc3545">
 	<title><?= $titulo ?: 'IPTV' ?></title>
 	<?php foreach ($css as $file) : ?>
 		<link rel="stylesheet" href="<?= base_url("public/css/$file.css?v=" . time()) ?>">
