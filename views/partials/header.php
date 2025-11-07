@@ -4,6 +4,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#dc3545">
+    <meta name="robots" content="noindex, nofollow">
 	<title><?= $titulo ? $titulo . ' - Liz Play' : 'Liz Play' ?></title>
 	<?php foreach ($css as $file) : ?>
 		<link rel="stylesheet" href="<?= base_url("public/css/$file.css?v=" . time()) ?>">
@@ -42,6 +43,6 @@
 			</div>
 		</div>
 	</nav>
-	<div style="padding: 0 1%">
+	<div>
 		<script>const COMMON_URL = '<?= COMMON_URL ?>';</script>
 		

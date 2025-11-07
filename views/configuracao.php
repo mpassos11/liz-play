@@ -11,7 +11,7 @@
 		<label for="IPTV_PASSWORD" class="form-label">Senha</label>
 		<input type="password" class="form-control" id="IPTV_PASSWORD" name="IPTV_PASSWORD" value="<?= $config['IPTV_PASSWORD'] ?: '' ?>">
 	</div>
-	<button type="submit" class="btn btn-primary">Salvar</button>
+	<button type="submit" class="btn btn-danger">Salvar</button>
 </form>
 <br>
-<a target="_blank" href="<?= base_url('/atualizar-dados') ?>" class="btn btn-primary">Forçar atualização dos dados</a>
+<a target="_blank" href="<?= base_url('/atualizar-dados') ?>" class="btn btn-danger">Forçar atualização dos dados</a>

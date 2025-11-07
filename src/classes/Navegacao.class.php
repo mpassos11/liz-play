@@ -136,7 +136,7 @@ class Navegacao
             'episodios' => $episodios,
             'progresso' => $progresso,
             'tipoConteudo' => $tipo,
-        ], ['reprodutor', 'player'], ['player']);
+        ], ['playerjs', 'reprodutor'], ['player']);
     }
 
     public static function renderizarConteudo($categoria, $item): string
@@ -152,9 +152,11 @@ class Navegacao
             $item['tipo'] = $item['tipo'] ?? $item['stream_type'];
             switch ($item['tipo']) {
                 case 'movie':
+                case 'filmes':
                     $item['tipo'] = 'filmes';
                     break;
                 case 'live':
+                case 'tv':
                     $item['tipo'] = 'tv';
                     break;
                 default:
