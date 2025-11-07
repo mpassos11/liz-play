@@ -8,6 +8,7 @@ $rota = new Rota();
 $rota->rota('/', 'Home::index');
 $rota->rota('/configuracao', 'Home::configuracao');
 $rota->rota('/sair', 'Home::sair');
+$rota->rota('/atualizar-dados', 'Home::atualizarDados');
 
 // Navegação
 $rota->rota('/conteudos/{tipo}', 'Navegacao::conteudos');

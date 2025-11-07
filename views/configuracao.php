@@ -14,4 +14,4 @@
 	<button type="submit" class="btn btn-danger">Salvar</button>
 </form>
 <br>
-<a target="_blank" href="<?= base_url('/atualizar-dados') ?>" class="btn btn-danger">Forçar atualização dos dados</a>
+<a href="<?= base_url('atualizar-dados') ?>" class="btn btn-danger">Forçar atualização dos dados</a>

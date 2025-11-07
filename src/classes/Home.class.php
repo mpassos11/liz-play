@@ -2,9 +2,8 @@
 
 class Home
 {
-
     public function index()
-	{
+    {
         if (!$_SESSION['perfil_id']) {
             if (!$_GET['id']) {
                 include COMMON_PATH . '/views/perfis.php';
@@ -16,12 +15,12 @@ class Home
 
         $ultimosAssistidos = (new ModeloProgresso())->obterProgresso($_SESSION['perfil_id']);
 
-		view('home', [
-			'ultimosAssistidos' => $ultimosAssistidos,
-			'seriesAleatorias' => [],
-			'filmesAleatorios' => []
-		]);
-	}
+        view('home', [
+            'ultimosAssistidos' => $ultimosAssistidos,
+            'seriesAleatorias' => [],
+            'filmesAleatorios' => []
+        ]);
+    }
 
     public function sair()
     {
@@ -30,30 +29,43 @@ class Home
         header('Location: ' . base_url());
         exit;
     }
-	
-	public function imagem($nome)
-	{
-		$imagem = COMMON_PATH . "public/imagens/$nome";
-		$mimetype = mime_content_type($imagem);
-		
-		header("Content-Type: $mimetype");
-		header("Content-Length: " . filesize($imagem));
-		header("Content-Disposition: inline; filename=$nome");
-		echo file_get_contents($imagem);
-	}
-	
-	public function configuracao()
-	{
+
+    public function imagem($nome)
+    {
+        $imagem = COMMON_PATH . "public/imagens/$nome";
+        $mimetype = mime_content_type($imagem);
+
+        header("Content-Type: $mimetype");
+        header("Content-Length: " . filesize($imagem));
+        header("Content-Disposition: inline; filename=$nome");
+        echo file_get_contents($imagem);
+    }
+
+    public function configuracao()
+    {
         if ($_POST) {
             atualizarConfigs($_POST);
         }
 
-		$config = [
+        $config = [
             'IPTV_API_URL' => getenv('IPTV_API_URL'),
             'IPTV_USERNAME' => getenv('IPTV_USERNAME'),
             'IPTV_PASSWORD' => getenv('IPTV_PASSWORD'),
         ];
-		
-		view('configuracao', ['config' => $config ?: []]);
-	}
+
+        view('configuracao', ['config' => $config ?: []]);
+    }
+
+    public function atualizarDados()
+    {
+        $caminho = COMMON_PATH . '/content';
+        // deletar arquivos no $caminho
+        $arquivos = glob($caminho . '/*.json');
+        foreach ($arquivos as $arquivo) {
+            unlink($arquivo);
+        }
+
+        $_SESSION['msg'] = 'Dados atualizados com sucesso!';
+        redirect('configuracao');
+    }
 }
