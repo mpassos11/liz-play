@@ -46,6 +46,25 @@ function definirEventos() {
             if ((tempo - ultimoTempoSalvo) >= 10) {
                 salvarProgresso(player.api('time'));
             }
+
+            const tempoRestante = (player.api('duration') - tempo);
+            if (tipoConteudo === 'series' && player.api('time') > 0) {
+                const $botao = $('#proximo-ep');
+                if (tempoRestante <= 60) {
+                    $botao.removeClass('d-none').addClass('is-counting');
+
+                    if (tempoRestante <= 30) {
+                        player.api('next');
+                        $botao.removeClass('is-counting').addClass('d-none');
+                    }
+
+                    $botao.on('click', function () {
+                        player.api('next');
+                    })
+                } else if (!$botao.hasClass('d-none')) {
+                    $botao.addClass('d-none');
+                }
+            }
         });
 }
 

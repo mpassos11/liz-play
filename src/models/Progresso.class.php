@@ -45,6 +45,10 @@ class ModeloProgresso
             }
         }
 
+        usort($progresso['progressos'], function ($a, $b) {
+            return $a['ultima_atualizacao'] < $b['ultima_atualizacao'];
+        });
+
         // Se não existir ou falhar, retorna a estrutura inicial
         return $progresso ?? ['user_id' => $usuarioId, 'progressos' => []];
     }

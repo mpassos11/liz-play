@@ -1,4 +1,9 @@
-<div id="player" style="width:100%; height:calc(100vh - 56px - 20px)"></div>
+<div id="player" style="width:100%; height:calc(100vh - 56px - 20px);position: relative"></div>
+<div style="position: absolute; bottom: 120px;right: 30px;z-index: 10; ">
+    <button id="proximo-ep" class="btn btn-danger d-none">
+        <i class="fa fa-play"></i> Proximo episódio
+    </button>
+</div>
 <script>
     const video = <?= json_encode($stream) ?: '{}' ?>;
     const urlDeSalvamento = "<?= base_url('/api/salvar-progresso') ?>";

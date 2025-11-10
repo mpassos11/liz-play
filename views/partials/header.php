@@ -5,6 +5,7 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#dc3545">
     <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="<?= base_url('public/imagens/icon.ico') ?>" type="image/x-icon">
 	<title><?= $titulo ? $titulo . ' - Liz Play' : 'Liz Play' ?></title>
 	<?php foreach ($css as $file) : ?>
 		<link rel="stylesheet" href="<?= base_url("public/css/$file.css?v=" . time()) ?>">

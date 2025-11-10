@@ -1,8 +1,23 @@
-html,body{width:100%;height:100%}
+html, body {
+    width: 100%;
+    height: 100%
+}
 
 #video-container {
     width: 100% !important;
     max-width: 100% !important;
     background-color: #000 !important;
     height: calc(100vh - 56px - 20px) !important;
+}
+
+@keyframes fill-bar {
+    to {
+        /* Move a barra para a direita, preenchendo o botão */
+        transform: translateX(0);
+    }
+}
+
+/* Classe aplicada via JS para iniciar a animação */
+.is-counting .countdown-bar {
+    animation: fill-bar 40s linear forwards; /* 40s de duração, movimento linear, e permanece no estado final */
 }
