@@ -8,6 +8,11 @@ class API
 
     public function __construct()
     {
+        if (empty($_POST)) {
+            $_POST = file_get_contents('php://input');
+            $_POST = json_decode($_POST, true);
+        }
+
         $this->iptv = new IPTV();
         $this->modeloProgresso = new ModeloProgresso();
         $this->checkAuth();
@@ -18,24 +23,24 @@ class API
         $token = $_ENV['API_TOKEN'];
         $receivedToken = '';
 
-        // Tenta obter o token do cabeçalho de autorização (Bearer)
+        // Tenta obter o token do cabeÃ§alho de autorizaÃ§Ã£o (Bearer)
         $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
         if (preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
             $receivedToken = $matches[1];
         }
 
-        // Se não estiver no cabeçalho, tenta obter dos dados POST
+        // Se nÃ£o estiver no cabeÃ§alho, tenta obter dos dados POST
         if (empty($receivedToken) && isset($_POST['api_token'])) {
             $receivedToken = $_POST['api_token'];
         }
 
         if (empty($receivedToken) || $receivedToken !== $token) {
-            $this->sendResponse(['error' => 'Acesso não autorizado'], 401);
+            $this->sendResponse(['error' => 'Acesso nÃ£o autorizado'], 401);
         }
 
         $this->userId = $_POST['user_id'] ?? null;
         if (empty($this->userId)) {
-            $this->sendResponse(['error' => 'USER_ID é obrigatório'], 400);
+            $this->sendResponse(['error' => 'USER_ID Ã© obrigatÃ³rio'], 400);
         }
     }
 
@@ -51,7 +56,7 @@ class API
     {
         $arquivo = $this->getArquivoPorTipo($tipoConteudo);
         if (!$arquivo) {
-            $this->sendResponse(['error' => "Categoria '{$tipoConteudo}' não encontrada."], 404);
+            $this->sendResponse(['error' => "Categoria '{$tipoConteudo}' nÃ£o encontrada."], 404);
         }
 
         $conteudo = $this->iptv->obterPorTipo($arquivo);
@@ -63,7 +68,7 @@ class API
     {
         $stream = $this->iptv->obterDetalhes($tipo, $id);
         if (empty($stream)) {
-            $this->sendResponse(['error' => 'Conteúdo não encontrado'], 404);
+            $this->sendResponse(['error' => 'ConteÃºdo nÃ£o encontrado'], 404);
         }
 
         $stream['tipo'] = $tipo;
@@ -73,6 +78,10 @@ class API
         if ($tipo === 'tv') {
             $stream['stream_link'] = str_replace('.ts', '.m3u8', $stream['stream_link']);
         }
+
+        $stream['stream_link'] = base_url('proxy?url=' . urlencode($stream['stream_link']));
+
+        error_log($stream['stream_link']);
 
         $this->sendResponse([
             'stream' => $stream,
@@ -85,7 +94,7 @@ class API
     {
         $episodios = $this->iptv->obterEpisodiosSeries($serieID);
         if (empty($episodios)) {
-            $this->sendResponse(['error' => 'Episódios não encontrados'], 404);
+            $this->sendResponse(['error' => 'EpisÃ³dios nÃ£o encontrados'], 404);
         }
 
         $retorno = ['seasons' => []];
@@ -102,7 +111,7 @@ class API
     public function salvarProgresso()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            $this->sendResponse(['error' => 'Método não permitido'], 405);
+            $this->sendResponse(['error' => 'MÃ©todo nÃ£o permitido'], 405);
         }
 
         $dados = $_POST;
@@ -131,7 +140,7 @@ class API
             $this->sendResponse(['sucesso' => false, 'mensagem' => 'Erro ao salvar o progresso.'], 500);
         }
     }
-    
+
     public function ultimosAssistidos()
     {
         $progresso = $this->modeloProgresso->obterProgresso($this->userId);
@@ -141,10 +150,14 @@ class API
     private function getArquivoPorTipo($tipo)
     {
         switch ($tipo) {
-            case 'filmes': return 'filmes.json';
-            case 'series': return 'series.json';
-            case 'tv': return 'tv.json';
-            default: return null;
+            case 'filmes':
+                return 'filmes.json';
+            case 'series':
+                return 'series.json';
+            case 'tv':
+                return 'tv.json';
+            default:
+                return null;
         }
     }
 
@@ -162,6 +175,24 @@ class API
             $categoria = array_search($item['category_id'], array_column($categorias, 'category_id'));
             if ($categoria !== false) {
                 $conteudoAExibir[$categorias[$categoria]['category_name']][] = $item;
+            }
+        }
+
+        foreach ($conteudoAExibir as $categoria => $itens) {
+            // pegar 10 conteudos randomicos de cada categoria
+            $min = 10;
+            $total = count($itens);
+            if ($min > $total) {
+                $min = $total;
+            }
+
+            $random = array_rand($itens, $min);
+            if (is_array($random)) {
+                $novosItens = [];
+                foreach ($random as $r) {
+                    $novosItens[] = $itens[$r];
+                }
+                $conteudoAExibir[$categoria] = $novosItens;
             }
         }
 
