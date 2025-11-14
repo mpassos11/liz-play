@@ -21,6 +21,14 @@ $rota->rota('/assistir/{tipo}/{id}', 'Navegacao::assistir');
 $rota->rota('/pesquisar', 'Navegacao::pesquisar');
 $rota->rota('/episodios/series/{id}', 'Navegacao::episodiosSeries');
 
+// API
+$rota->rota('/api/conteudos/{tipo}', 'API::conteudos');
+$rota->rota('/api/assistir/{tipo}/{id}', 'API::assistir');
+$rota->rota('/api/episodios/series/{id}', 'API::episodiosSeries');
+$rota->rota('/api/salvar-progresso', 'API::salvarProgresso');
+$rota->rota('/api/ultimos-assistidos', 'API::ultimosAssistidos');
+
+
 $rota->rota('/404', function () {
 	echo 'Rota não encontrada';
 });
