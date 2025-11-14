@@ -1,8 +1,10 @@
 var player = null;
 $(document).ready(function () {
+    var url = `${COMMON_URL}/proxy?url=${encodeURIComponent(video.stream_link)}`;
+
     var config = {
         id:"player",
-        file: video.stream_link,
+        file: url,
         poster: video.stream_icon,
         title: video.title,
         autoplay: 1,

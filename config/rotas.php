@@ -10,6 +10,9 @@ $rota->rota('/configuracao', 'Home::configuracao');
 $rota->rota('/sair', 'Home::sair');
 $rota->rota('/atualizar-dados', 'Home::atualizarDados');
 
+// Proxy
+$rota->rota('/proxy', 'Proxy::index');
+
 // Navegação
 $rota->rota('/conteudos/{tipo}', 'Navegacao::conteudos');
 $rota->rota('/salvar-progresso', 'Usuarios::salvarProgresso');
