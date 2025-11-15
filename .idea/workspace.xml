@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f5e211d-5e99-4513-a80a-2cdcffce7214" name="Changes" comment="menu responsivo total">
-      <change afterPath="$PROJECT_DIR$/public/imagens/icon.ico" afterDir="false" />
+    <list default="true" id="8f5e211d-5e99-4513-a80a-2cdcffce7214" name="Changes" comment="fix">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/player.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/player.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/reprodutor.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/reprodutor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Progresso.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Progresso.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/assistir.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/assistir.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/perfis.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/perfis.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/rotas.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/rotas.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/API.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/API.class.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,34 +54,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/wamp/www/liz-play/public/imagens",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "File.Encoding",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp/www/liz-play&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\liz-play" />
       <recent name="C:\wamp\www\liz-play\public\imagens" />
       <recent name="C:\wamp\www\liz-play\views" />
       <recent name="C:\wamp\www\liz-play\public\js" />
-      <recent name="C:\wamp\www\liz-play" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp\www\liz-play\public\imagens" />
@@ -132,7 +128,13 @@
       <workItem from="1762541039641" duration="7644000" />
       <workItem from="1762548836306" duration="27000" />
       <workItem from="1762719995711" duration="57000" />
-      <workItem from="1762804480463" duration="2934000" />
+      <workItem from="1762804480463" duration="3640000" />
+      <workItem from="1762863460959" duration="182000" />
+      <workItem from="1763038981012" duration="977000" />
+      <workItem from="1763143508504" duration="2260000" />
+      <workItem from="1763147077276" duration="2789000" />
+      <workItem from="1763149949871" duration="2429000" />
+      <workItem from="1763226139958" duration="3411000" />
     </task>
     <task id="LOCAL-00001" summary="feat: configurar roteamento e base URL com variáveis de ambiente&#10;&#10;Este commit refatora o sistema de roteamento e a definição do caminho&#10;base da aplicação, melhorando a flexibilidade e a portabilidade.&#10;&#10;Principais mudanças:&#10;- Introdução de um arquivo `.env` para gerenciar a URL base do projeto&#10;  (`URL_BASE`), facilitando a configuração em diferentes ambientes.&#10;- Ajustes nos arquivos `.htaccess` (na raiz e em `public/`) para&#10;  rotear todas as requisições através de `public/index.php`, incluindo&#10;  suporte a subdiretórios com `RewriteBase`.&#10;- Criação de um `index.php` na raiz do projeto para carregar as&#10;  variáveis de ambiente e redirecionar para a rota `/home`.&#10;- Atualização em `public/index.php` para utilizar `$_ENV['URL_BASE']`&#10;  e processar a URI através de `$_GET['url']`.&#10;- A rota principal da aplicação foi alterada de `/` para `/home`.">
       <option name="closed" value="true" />
@@ -374,7 +376,47 @@
       <option name="project" value="LOCAL" />
       <updated>1762548750884</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="fix">
+      <option name="closed" value="true" />
+      <created>1762807550191</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1762807550191</updated>
+    </task>
+    <task id="LOCAL-00032" summary="add apk">
+      <option name="closed" value="true" />
+      <created>1762808043792</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1762808043792</updated>
+    </task>
+    <task id="LOCAL-00033" summary="feat: Adiciona funcionalidade de proxy para reprodução de vídeos (main)&#10;&#10;Implementa um proxy para contornar problemas de CORS e permitir a reprodução&#10;de vídeos de links externos.&#10;&#10;- Cria a classe `Proxy` em `src/classes/Proxy.php` para gerenciar as&#10;  requisições proxy.&#10;- Adiciona uma nova rota `/proxy` em `config/rotas.php` para acessar o&#10;  proxy.&#10;- Modifica `public/js/reprodutor.js` para utilizar a nova rota proxy&#10;  ao definir o link do stream do vídeo.&#10;&#10;Isso permite que o player de vídeo acesse o conteúdo do `stream_link`&#10;através de um proxy, resolvendo potenciais bloqueios de CORS.">
+      <option name="closed" value="true" />
+      <created>1763143961952</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1763143961952</updated>
+    </task>
+    <task id="LOCAL-00034" summary="feat: Implementação da API com autenticação e novas rotas (main)&#10;&#10;Refatora a classe API para incluir autenticação baseada em token,&#10;gerenciamento de usuário e novas rotas para acesso a conteúdos,&#10;detalhes de exibição, episódios de séries, salvamento de progresso&#10;e lista de últimos assistidos.&#10;&#10;As rotas antigas na classe API foram removidas e substituídas&#10;por métodos mais organizados e com validação de autenticação.&#10;Adicionada a rota `/api/salvar-progresso` para registrar o&#10;progresso do usuário.&#10;&#10;A estrutura da classe API foi reescrita para melhor organização&#10;e legibilidade, incluindo a injeção de dependência de `IPTV`&#10;e `ModeloProgresso`.&#10;&#10;Adiciona novas rotas no arquivo `config/rotas.php` para&#10;as funcionalidades da API.">
+      <option name="closed" value="true" />
+      <created>1763144269103</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1763144269103</updated>
+    </task>
+    <task id="LOCAL-00035" summary="fix">
+      <option name="closed" value="true" />
+      <created>1763149892131</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1763149892131</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,16 +425,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="```&#10;feat: Implementa reprodução HLS e proxy para streams ao vivo&#10;&#10;Adiciona suporte robusto para reprodução de streams HLS,&#10;especialmente para conteúdo de TV ao vivo.&#10;&#10;Detalhes:&#10;- Integração de hls.js e Video.js para gerenciamento de streams HLS.&#10;- Introdução de um controlador de proxy para lidar com links de stream HTTP&#10;  inseguros, resolvendo problemas de &quot;conteúdo misto&quot; em navegadores.&#10;  Isso permite que streams HTTP sejam servidos via HTTPS.&#10;- O rastreamento de progresso do player foi desativado para conteúdo&#10;  do tipo 'tv', pois não é aplicável a transmissões ao vivo.&#10;- Scripts e estilos agora utilizam cache busting para garantir&#10;  o carregamento das versões mais recentes.&#10;```" />
-    <MESSAGE value="{&#13;&#10;  &quot;error&quot;: {&#13;&#10;    &quot;code&quot;: 429,&#13;&#10;    &quot;message&quot;: &quot;You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 250000\nPlease retry in 54.023070944s.&quot;,&#13;&#10;    &quot;status&quot;: &quot;RESOURCE_EXHAUSTED&quot;,&#13;&#10;    &quot;details&quot;: [&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.Help&quot;,&#13;&#10;        &quot;links&quot;: [&#13;&#10;          {&#13;&#10;            &quot;description&quot;: &quot;Learn more about Gemini API quotas&quot;,&#13;&#10;            &quot;url&quot;: &quot;https://ai.google.dev/gemini-api/docs/rate-limits&quot;&#13;&#10;          }&#13;&#10;        ]&#13;&#10;      },&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.QuotaFailure&quot;,&#13;&#10;        &quot;violations&quot;: [&#13;&#10;          {&#13;&#10;            &quot;quotaMetric&quot;: &quot;generativelanguage.googleapis.com/generate_content_free_tier_input_token_count&quot;,&#13;&#10;            &quot;quotaId&quot;: &quot;GenerateContentInputTokensPerModelPerMinute-FreeTier&quot;,&#13;&#10;            &quot;quotaDimensions&quot;: {&#13;&#10;              &quot;location&quot;: &quot;global&quot;,&#13;&#10;              &quot;model&quot;: &quot;gemini-2.5-flash&quot;&#13;&#10;            },&#13;&#10;            &quot;quotaValue&quot;: &quot;250000&quot;&#13;&#10;          }&#13;&#10;        ]&#13;&#10;      },&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.RetryInfo&quot;,&#13;&#10;        &quot;retryDelay&quot;: &quot;54s&quot;&#13;&#10;      }&#13;&#10;    ]&#13;&#10;  }&#13;&#10;}" />
-    <MESSAGE value="{&#13;&#10;  &quot;error&quot;: {&#13;&#10;    &quot;code&quot;: 429,&#13;&#10;    &quot;message&quot;: &quot;You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 250000\nPlease retry in 6.404534855s.&quot;,&#13;&#10;    &quot;status&quot;: &quot;RESOURCE_EXHAUSTED&quot;,&#13;&#10;    &quot;details&quot;: [&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.Help&quot;,&#13;&#10;        &quot;links&quot;: [&#13;&#10;          {&#13;&#10;            &quot;description&quot;: &quot;Learn more about Gemini API quotas&quot;,&#13;&#10;            &quot;url&quot;: &quot;https://ai.google.dev/gemini-api/docs/rate-limits&quot;&#13;&#10;          }&#13;&#10;        ]&#13;&#10;      },&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.QuotaFailure&quot;,&#13;&#10;        &quot;violations&quot;: [&#13;&#10;          {&#13;&#10;            &quot;quotaMetric&quot;: &quot;generativelanguage.googleapis.com/generate_content_free_tier_input_token_count&quot;,&#13;&#10;            &quot;quotaId&quot;: &quot;GenerateContentInputTokensPerModelPerMinute-FreeTier&quot;,&#13;&#10;            &quot;quotaDimensions&quot;: {&#13;&#10;              &quot;location&quot;: &quot;global&quot;,&#13;&#10;              &quot;model&quot;: &quot;gemini-2.5-flash&quot;&#13;&#10;            },&#13;&#10;            &quot;quotaValue&quot;: &quot;250000&quot;&#13;&#10;          }&#13;&#10;        ]&#13;&#10;      },&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.RetryInfo&quot;,&#13;&#10;        &quot;retryDelay&quot;: &quot;6s&quot;&#13;&#10;      }&#13;&#10;    ]&#13;&#10;  }&#13;&#10;}" />
-    <MESSAGE value="{&#13;&#10;  &quot;error&quot;: {&#13;&#10;    &quot;code&quot;: 429,&#13;&#10;    &quot;message&quot;: &quot;You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 250000\nPlease retry in 55.794955997s.&quot;,&#13;&#10;    &quot;status&quot;: &quot;RESOURCE_EXHAUSTED&quot;,&#13;&#10;    &quot;details&quot;: [&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.Help&quot;,&#13;&#10;        &quot;links&quot;: [&#13;&#10;          {&#13;&#10;            &quot;description&quot;: &quot;Learn more about Gemini API quotas&quot;,&#13;&#10;            &quot;url&quot;: &quot;https://ai.google.dev/gemini-api/docs/rate-limits&quot;&#13;&#10;          }&#13;&#10;        ]&#13;&#10;      },&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.QuotaFailure&quot;,&#13;&#10;        &quot;violations&quot;: [&#13;&#10;          {&#13;&#10;            &quot;quotaMetric&quot;: &quot;generativelanguage.googleapis.com/generate_content_free_tier_input_token_count&quot;,&#13;&#10;            &quot;quotaId&quot;: &quot;GenerateContentInputTokensPerModelPerMinute-FreeTier&quot;,&#13;&#10;            &quot;quotaDimensions&quot;: {&#13;&#10;              &quot;model&quot;: &quot;gemini-2.5-flash&quot;,&#13;&#10;              &quot;location&quot;: &quot;global&quot;&#13;&#10;            },&#13;&#10;            &quot;quotaValue&quot;: &quot;250000&quot;&#13;&#10;          }&#13;&#10;        ]&#13;&#10;      },&#13;&#10;      {&#13;&#10;        &quot;@type&quot;: &quot;type.googleapis.com/google.rpc.RetryInfo&quot;,&#13;&#10;        &quot;retryDelay&quot;: &quot;55s&quot;&#13;&#10;      }&#13;&#10;    ]&#13;&#10;  }&#13;&#10;}" />
-    <MESSAGE value="fix: Adiciona fallback para imagem e força HTTP (main)&#10;&#10;Corrige a" />
-    <MESSAGE value="fix: Adiciona fallback para imagem e força HTTP (main)&#10;&#10;Corrige a exibição de imagens e força o uso de HTTP em vez de HTTPS.&#10;&#10;No `ModeloApiIptv.php`, adiciona um fallback para `stream_icon` usando o campo `cover` caso `stream_icon` não esteja" />
-    <MESSAGE value="fix: Adiciona fallback para imagem e força HTTP (main)&#10;&#10;Corrige a exibição de imagens e força o uso de HTTP em vez de HTTPS.&#10;&#10;No `ModeloApiIptv.php`, adiciona um fallback para `stream_icon` usando o campo `cover` caso `stream_icon` não esteja presente.&#10;&#10;No `ControladorHome.php`, comenta a carga dos dados de filmes, séries e TV, definindo-os como arrays vazios. Isso é uma correção temporária ou preparatória para refatoração.&#10;&#10;No `index.php" />
-    <MESSAGE value="fix: Adiciona fallback para imagem e força HTTP (main)&#10;&#10;Corrige a exibição de imagens e força o uso de HTTP em vez de HTTPS.&#10;&#10;No `ModeloApiIptv.php`, adiciona um fallback para `stream_icon` usando o campo `cover` caso `stream_icon` não esteja presente.&#10;&#10;No `ControladorHome.php`, comenta a carga dos dados de filmes, séries e TV, definindo-os como arrays vazios. Isso é uma correção temporária ou preparatória para refatoração.&#10;&#10;No `index.php`, adiciona uma verificação para redirecionar requisições HTTPS para HTTP, garantindo o uso de HTTP. Além disso, substitui o header de redirecionamento para a página de login por um script `echo` para garantir que o redire" />
-    <MESSAGE value="fix: Adiciona fallback para imagem e força HTTP (main)&#10;&#10;Corrige a exibição de imagens e força o uso de HTTP em vez de HTTPS.&#10;&#10;No `ModeloApiIptv.php`, adiciona um fallback para `stream_icon` usando o campo `cover` caso `stream_icon` não esteja presente.&#10;&#10;No `ControladorHome.php`, comenta a carga dos dados de filmes, séries e TV, definindo-os como arrays vazios. Isso é uma correção temporária ou preparatória para refatoração.&#10;&#10;No `index.php`, adiciona uma verificação para redirecionar requisições HTTPS para HTTP, garantindo o uso de HTTP. Além disso, substitui o header de redirecionamento para a página de login por um script `echo` para garantir que o redirecionamento funcione corretamente em todos os cenários." />
-    <MESSAGE value="```&#10;fix: Implement" />
     <MESSAGE value="```&#10;fix: Implementa seleção de perfil e força HTTP (main)&#10;&#10;Adiciona funcionalidade de seleção de" />
     <MESSAGE value="```&#10;fix: Implementa seleção de perfil e força HTTP (main)&#10;&#10;Adiciona funcionalidade de seleção de perfil e garante o uso de HTTP.&#10;&#10;- **core/Rotas.php**: Adiciona a rota '/trocar-perfil' para gerenciar a troca de perfis.&#10;- **app/views/home/perf" />
     <MESSAGE value="```&#10;fix: Implementa seleção de perfil e força HTTP (main)&#10;&#10;Adiciona funcionalidade de seleção de perfil e garante o uso de HTTP.&#10;&#10;- **core/Rotas.php**: Adiciona a rota '/trocar-perfil' para gerenciar a troca de perfis.&#10;- **app/views/home/perfis.php**: Cria uma nova view para a tela de seleção de perfis.&#10;- **app/controllers/ControladorHome.php**:&#10;    - Implementa a lógica para selecionar e armazenar o perfil do usuário na sessão.&#10;    " />
@@ -401,14 +433,24 @@
     <MESSAGE value="```&#10;fix: Implementa seleção de perfil e força HTTP (main)&#10;&#10;Adiciona funcionalidade de seleção de perfil e garante o uso de HTTP.&#10;&#10;- **core/Rotas.php**: Adiciona a rota '/trocar-perfil' para gerenciar a troca de perfis.&#10;- **app/views/home/perfis.php**: Cria uma nova view para a tela de seleção de perfis.&#10;- **app/controllers/ControladorHome.php**:&#10;    - Implementa a lógica para selecionar e armazenar o perfil do usuário na sessão.&#10;    - Caso nenhum perfil seja selecionado, exibe a tela de perfis.&#10;    - Adiciona a rota `trocar_perfil` para limpar a sessão do perfil.&#10;    - Comenta a carga de dados de filmes, séries e TV como uma medida temporária.&#10;- **app/views/layout/cabecalho.php**:&#10;    - Atualiza a saudação para exibir o nome do usuário logado.&#10;    - Adiciona um link para trocar de perfil.&#10;```" />
     <MESSAGE value="fix: Implementa seleção de perfil e força HTTP (main)&#10;&#10;Adiciona funcionalidade de seleção de perfil e garante o uso de HTTP.&#10;&#10;- **core/Rotas.php**: Adiciona a rota '/trocar-perfil' para gerenciar a troca de perfis.&#10;- **app/views/home/perfis.php**: Cria uma nova view para a tela de seleção de perfis.&#10;- **app/controllers/ControladorHome.php**:&#10;    - Implementa a lógica para selecionar e armazenar o perfil do usuário na sessão.&#10;    - Caso nenhum perfil seja selecionado, exibe a tela de perfis.&#10;    - Adiciona a rota `trocar_perfil` para limpar a sessão do perfil.&#10;    - Comenta a carga de dados de filmes, séries e TV como uma medida temporária.&#10;- **app/views/layout/cabecalho.php**:&#10;    - Atualiza a saudação para exibir o nome do usuário logado.&#10;    - Adiciona um link para trocar de perfil." />
     <MESSAGE value="reprodução de video" />
-    <MESSAGE value="feat" />
     <MESSAGE value="feat: Remove debug prints de reprodução de vídeo (main)&#10;&#10;Remove chamadas `" />
     <MESSAGE value="feat: Remove debug prints de reprodução de vídeo (main)&#10;&#10;Remove chamadas `print_r` desnecessárias em `ModeloProgresso.php` e `ControladorProxy.php`.&#10;&#10;Essas chamadas foram adicionadas para depuração durante o desenvolvimento da funcionalidade de reprodução de vídeo e não são mais necessárias" />
     <MESSAGE value="feat: Remove debug prints de reprodução de vídeo (main)&#10;&#10;Remove chamadas `print_r` desnecessárias em `ModeloProgresso.php` e `ControladorProxy.php`.&#10;&#10;Essas chamadas foram adicionadas para depuração durante o desenvolvimento da funcionalidade de reprodução de vídeo e não são mais necessárias." />
-    <MESSAGE value="fix" />
     <MESSAGE value="novo player top" />
     <MESSAGE value="menu responsivo total" />
-    <option name="LAST_COMMIT_MESSAGE" value="menu responsivo total" />
+    <MESSAGE value="add apk" />
+    <MESSAGE value="feat: Adiciona funcionalidade de proxy para reprodução de vídeos (main)&#10;&#10;Implement" />
+    <MESSAGE value="feat: Adiciona funcionalidade de proxy para reprodução de vídeos (main)&#10;&#10;Implementa um proxy para contornar problemas de CORS e permitir a reprodução&#10;de vídeos de links externos.&#10;&#10;- Cria a classe `Proxy` em `src/classes/Proxy.php` para gerenciar as&#10;  requisições proxy" />
+    <MESSAGE value="feat: Adiciona funcionalidade de proxy para reprodução de vídeos (main)&#10;&#10;Implementa um proxy para contornar problemas de CORS e permitir a reprodução&#10;de vídeos de links externos.&#10;&#10;- Cria a classe `Proxy` em `src/classes/Proxy.php` para gerenciar as&#10;  requisições proxy.&#10;- Adiciona uma nova rota `/proxy` em `config/rotas.php` para acessar o&#10;  proxy.&#10;- Modifica `public/js/reprodutor.js` para utilizar a nova rota proxy" />
+    <MESSAGE value="feat: Adiciona funcionalidade de proxy para reprodução de vídeos (main)&#10;&#10;Implementa um proxy para contornar problemas de CORS e permitir a reprodução&#10;de vídeos de links externos.&#10;&#10;- Cria a classe `Proxy` em `src/classes/Proxy.php` para gerenciar as&#10;  requisições proxy.&#10;- Adiciona uma nova rota `/proxy` em `config/rotas.php` para acessar o&#10;  proxy.&#10;- Modifica `public/js/reprodutor.js` para utilizar a nova rota proxy&#10;  ao definir o link do stream do vídeo.&#10;&#10;Isso permite que o player de vídeo acesse o conteúdo do `stream_link`&#10;através de um proxy, resolvendo potenciais bloqueios de CORS." />
+    <MESSAGE value="feat" />
+    <MESSAGE value="feat: Implementação da API com autenticação e novas rotas (main)&#10;&#10;Ref" />
+    <MESSAGE value="feat: Implementação da API com autenticação e novas rotas (main)&#10;&#10;Refatora a classe API para incluir autenticação baseada em token,&#10;gerenciamento de usuário e novas rotas para acesso a conteúdos,&#10;detalhes de exibição, episódios de séries, salvamento de progresso&#10;e" />
+    <MESSAGE value="feat: Implementação da API com autenticação e novas rotas (main)&#10;&#10;Refatora a classe API para incluir autenticação baseada em token,&#10;gerenciamento de usuário e novas rotas para acesso a conteúdos,&#10;detalhes de exibição, episódios de séries, salvamento de progresso&#10;e lista de últimos assistidos.&#10;&#10;As rotas antigas na classe API foram removidas e substituídas&#10;por métodos mais organizados e com validação de autenticação.&#10;Adicionada a rota `/api/salvar-progresso` para" />
+    <MESSAGE value="feat: Implementação da API com autenticação e novas rotas (main)&#10;&#10;Refatora a classe API para incluir autenticação baseada em token,&#10;gerenciamento de usuário e novas rotas para acesso a conteúdos,&#10;detalhes de exibição, episódios de séries, salvamento de progresso&#10;e lista de últimos assistidos.&#10;&#10;As rotas antigas na classe API foram removidas e substituídas&#10;por métodos mais organizados e com validação de autenticação.&#10;Adicionada a rota `/api/salvar-progresso` para registrar o&#10;progresso do usuário.&#10;&#10;A estrutura da classe API foi reescrita para melhor organização&#10;e legibilidade, incluindo a injeção de dependência de `IPTV`&#10;e `ModeloProgresso`.&#10;&#10;Adiciona novas" />
+    <MESSAGE value="feat: Implementação da API com autenticação e novas rotas (main)&#10;&#10;Refatora a classe API para incluir autenticação baseada em token,&#10;gerenciamento de usuário e novas rotas para acesso a conteúdos,&#10;detalhes de exibição, episódios de séries, salvamento de progresso&#10;e lista de últimos assistidos.&#10;&#10;As rotas antigas na classe API foram removidas e substituídas&#10;por métodos mais organizados e com validação de autenticação.&#10;Adicionada a rota `/api/salvar-progresso` para registrar o&#10;progresso do usuário.&#10;&#10;A estrutura da classe API foi reescrita para melhor organização&#10;e legibilidade, incluindo a injeção de dependência de `IPTV`&#10;e `ModeloProgresso`.&#10;&#10;Adiciona novas rotas no arquivo `config/rotas.php` para&#10;as funcionalidades da API." />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
     <option name="NON_MODAL_COMMIT_POSTPONE_SLOW_CHECKS" value="false" />
   </component>
 </project>

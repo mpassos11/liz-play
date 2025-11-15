@@ -79,9 +79,9 @@ class API
             $stream['stream_link'] = str_replace('.ts', '.m3u8', $stream['stream_link']);
         }
 
-        $stream['stream_link'] = base_url('proxy?url=' . urlencode($stream['stream_link']));
+        //$stream['stream_link'] = base_url('proxy?url=' . urlencode($stream['stream_link']));
 
-        error_log($stream['stream_link']);
+        //error_log($stream['stream_link']);
 
         $this->sendResponse([
             'stream' => $stream,
@@ -145,6 +145,35 @@ class API
     {
         $progresso = $this->modeloProgresso->obterProgresso($this->userId);
         $this->sendResponse($progresso['progressos'] ?? []);
+    }
+
+    public function pesquisar()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->sendResponse(['error' => 'Método não permitido'], 405);
+        }
+
+        $pesquisa = $_POST['texto'] ?? '';
+        $tipo = $_POST['tipo'] ?? '';
+
+        if (empty($pesquisa) || empty($tipo)) {
+            $this->sendResponse(['error' => 'Os parâmetros "texto" e "tipo" são obrigatórios'], 400);
+        }
+
+        $arquivo = $this->getArquivoPorTipo($tipo);
+        if (!$arquivo) {
+            $this->sendResponse(['error' => "Tipo de conteúdo '{$tipo}' inválido"], 400);
+        }
+
+        $conteudos = $this->iptv->obterPorTipo($arquivo);
+        
+        $resultados = array_filter($conteudos, function ($conteudo) use ($pesquisa) {
+            return stripos($conteudo['title'], $pesquisa) !== false;
+        });
+
+        $resultados = array_values($resultados);
+
+        $this->sendResponse($resultados);
     }
 
     private function getArquivoPorTipo($tipo)

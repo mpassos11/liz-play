@@ -27,6 +27,7 @@ $rota->rota('/api/assistir/{tipo}/{id}', 'API::assistir');
 $rota->rota('/api/episodios/series/{id}', 'API::episodiosSeries');
 $rota->rota('/api/salvar-progresso', 'API::salvarProgresso');
 $rota->rota('/api/ultimos-assistidos', 'API::ultimosAssistidos');
+$rota->rota('/api/pesquisar', 'API::pesquisar');
 
 
 $rota->rota('/404', function () {
